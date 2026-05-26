@@ -1,8 +1,7 @@
 <template>
-    <app-header />
-    <p>Landing page</p>
+    <landing-header />
     <slot />
-    <app-footer />
+    <landing-footer />
 </template>
 
 <script setup lang="ts">
