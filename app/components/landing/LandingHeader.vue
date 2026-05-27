@@ -8,22 +8,22 @@
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/docs">Features</a>
+                            <a href="features">Features</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/docs">How it works</a>
+                            <a href="/how-it-works">How it works</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/docs">Pricing</a>
+                            <a href="/pricing">Pricing</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/docs">FAQ</a>
+                            <a href="/faq">FAQ</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>
