@@ -10,6 +10,13 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/styles/main.scss" as *;'
+        }
+      }
+    }
   },
 
   modules: ['shadcn-nuxt'],
