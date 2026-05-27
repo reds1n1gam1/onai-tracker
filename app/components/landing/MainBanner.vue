@@ -7,6 +7,8 @@
             <Button>See how it works</Button>
         </div>
 
+        <img src="https://dummyimage.com/1200x800/cccccc/fff.jpg" alt="">
+
     </div>
 </template>
 
