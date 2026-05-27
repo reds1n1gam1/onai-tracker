@@ -51,11 +51,12 @@ import {
 
 <style lang="scss" scoped>
 .header {
-    --ot-logo-size: 70px;
+    --ot-logo-width: 280px;
+    --ot-logo-height: 70px;
 
     &__logotype {
-        width: var(--ot-logo-size);
-        height: var(--ot-logo-size);
+        width: var(--ot-logo-width);
+        height: var(--ot-logo-height);
     }
 }
 </style>
