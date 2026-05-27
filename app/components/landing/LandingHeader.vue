@@ -31,8 +31,8 @@
         </nav>
 
         <div class="header__auth grid gap-5 grid-cols-2">
-            <Button>Sign in</Button>
-            <Button>Get started</Button>
+            <Button size="lg" variant="secondary">Sign in</Button>
+            <Button size="lg">Get started</Button>
         </div>
     </div>
 </template>
