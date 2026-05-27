@@ -1,9 +1,5 @@
 <template>
     <landing-header />
-    <landing-banner/>
-    <landing-features/>
-    <landing-benefits/>
-    <landing-action/>
     <slot />
     <landing-footer />
 </template>

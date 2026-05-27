@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h1>Index page</h1>
+        <landing-banner />
+        <landing-features />
+        <landing-benefits />
+        <landing-action />
         <span> {{ randomEntry([1, 2, 3]) }} </span>
     </div>
 </template>
