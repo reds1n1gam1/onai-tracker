@@ -2,7 +2,7 @@
     <div class="landing-banner grid md:grid-cols-2 sm:grid-cols-1">
         <div class="flex flex-col gap-6 items-start">
             <LandingLabel palette="default" text="Smarter time tracking. Better priorities">
-                <IconSparklesFilled></IconSparklesFilled>
+                <IconSparklesFilled />
             </LandingLabel>
 
             <div class="flex gap-2 flex-col">
@@ -14,6 +14,20 @@
             <div class="flex flex-row gap-4">
                 <Button size="lg" class=" text-lg p-6 font-bold">Start tracking time free</Button>
                 <Button size="lg" variant="secondary" class=" font-bold p-6 text-lg">See how it works</Button>
+            </div>
+
+            <div class="flex flex-row gap-2">
+                <LandingLabel palette="outline" text="Free 14-day trial">
+                    <IconCircleCheckFilled />
+                </LandingLabel>
+
+                <LandingLabel palette="outline" text="No credit card required">
+                    <IconCircleCheckFilled />
+                </LandingLabel>
+
+                <LandingLabel palette="outline" text="Cancel anytime">
+                    <IconCircleCheckFilled />
+                </LandingLabel>
             </div>
         </div>
 
@@ -30,7 +44,7 @@
 <script setup lang="ts">
 import Button from '../ui/button/Button.vue';
 import LandingLabel from './ui/LandingLabel.vue';
-import { IconSparklesFilled } from '@tabler/icons-vue';
+import { IconSparklesFilled, IconCircleCheckFilled } from '@tabler/icons-vue';
 </script>
 
 <style scoped>
