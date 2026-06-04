@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="flex flex-col gap-4 items-center">
+        <div class="flex flex-col gap-6 items-center">
             <LandingLabel text="FAQ" palette="default">
                 <IconHelpOctagonFilled />
             </LandingLabel>

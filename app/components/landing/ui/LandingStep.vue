@@ -1,5 +1,5 @@
 <template>
-    <div class="step flex flex-row shadow-md p-6 pl-10 rounded-lg items-center gap-2 relative">
+    <div class="step flex flex-row p-6 pl-10 rounded-lg items-center gap-2 relative">
         <div class="step__index absolute left-2 top-5 w-8 h-8 flex items-center justify-center rounded-full font-semibold"> {{ number }} </div>
 
         <div class="step__icon flex-shrink-0 rounded-full flex items-center justify-center w-20 h-20">

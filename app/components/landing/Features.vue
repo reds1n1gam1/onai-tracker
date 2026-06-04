@@ -1,6 +1,6 @@
 <template>
     <div class="features">
-        <div class="features__header flex flex-col gap-4 items-center">
+        <div class="features__header flex flex-col gap-6 items-center">
             <LandingLabel text="Features" palette="default">
                 <IconStarFilled />
             </LandingLabel>
