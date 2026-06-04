@@ -3,10 +3,9 @@
         <MainBanner  class="my-12"/>
         <Features  class="my-12"/>
         <HowItWorks  class="my-12"/>
+        <SpecialBanner class="my-12"/>
         <Pricing  class="my-12"/>
         <FAQ  class="my-12"/>
-        <SpecialBanner/>
-        <span> {{ randomEntry([1, 2, 3]) }} </span>
     </div>
 </template>
 
