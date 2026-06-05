@@ -1,6 +1,6 @@
 <template>
     <div>
-        Login page
+        Login page updates
     </div>
 </template>
 
