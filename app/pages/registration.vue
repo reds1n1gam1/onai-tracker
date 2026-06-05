@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-
+definePageMeta({
+    layout: 'auth',
+})
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -5,7 +5,7 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 
 ## MVP Scope
 
-- [ ] Landing page
+- [x] Landing page
 - [ ] Sign up / Sign in
 - [ ] Dashboard
 - [ ] Tasks CRUD
