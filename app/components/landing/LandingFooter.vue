@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="footer container mx-auto px-4">
         Landing Footer
     </div>
 </template>

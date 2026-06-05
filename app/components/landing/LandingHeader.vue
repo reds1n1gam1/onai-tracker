@@ -1,5 +1,5 @@
 <template>
-    <div class="header grid gap-4 grid-cols-3 py-10 px-10 items-center">
+    <div class="header container mx-auto px-4 grid gap-4 grid-cols-3 py-10 px-10 items-center">
         <div class="header__logo">
             <img class="header__logotype" src="/logo.png" alt="">
         </div>
