@@ -1,10 +1,12 @@
 <template>
-    <div>
-        Login page updates
+    <div class="flex place-items-center place-content-center bg-gray-50 h-screen">
+        <LoginDialog class="w-9/12"/>
     </div>
 </template>
 
 <script setup lang="ts">
+import LoginDialog from '~/components/dialogs/LoginDialog.vue';
+
 definePageMeta({
     layout: 'auth',
 })
