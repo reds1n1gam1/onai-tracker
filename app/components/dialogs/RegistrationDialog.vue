@@ -66,7 +66,7 @@
         </div>
 
         <div class="registration__have-account text-center w-8/12 mx-auto">
-            Already have an account <a href="" class="text-blue-500 font-semibold">Sign in</a> 
+            Already have an account <RouterLink to="/login" class="text-blue-500 font-semibold">Sign in</RouterLink> 
         </div>
     </div>
 </template>

@@ -43,6 +43,12 @@
             <Button class="text-lg p-6">Sign in</Button>
         </div>
 
+        <div class="login__signup text-center w-8/12 mx-auto">
+            Do not have account? <RouterLink class="text-blue-500 font-semibold" to="/registration">Sign up</RouterLink>
+        </div>
+
+        <hr>
+
         <div class="login__policy text-center w-8/12 mx-auto">
             By signing in, you agree to our <a href="" class="text-blue-500 font-semibold">Terms of Service</a> and <a
                 href="" class="text-blue-500 font-semibold">Privacy Policy</a>

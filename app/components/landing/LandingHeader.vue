@@ -8,22 +8,22 @@
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="features">Features</a>
+                            <a class="text-lg" href="#features">Features</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/how-it-works">How it works</a>
+                            <a class="text-lg" href="#how-it-works">How it works</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/pricing">Pricing</a>
+                            <a class="text-lg" href="#pricing">Pricing</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-                            <a href="/faq">FAQ</a>
+                            <a class="text-lg" href="#faq">FAQ</a>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>
@@ -31,8 +31,8 @@
         </nav>
 
         <div class="header__auth grid gap-5 grid-cols-2">
-            <Button size="lg" variant="secondary">Sign in</Button>
-            <Button size="lg">Get started</Button>
+            <Button @click="openLogin()" size="lg" variant="secondary" class="text-lg cursor-pointer">Sign in</Button>
+            <Button @click="openRegistration()" size="lg" class="text-lg cursor-pointer">Get started</Button>
         </div>
     </div>
 </template>
@@ -46,6 +46,16 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+
+const router = useRouter()
+
+function openLogin() {
+    router.push('/login')
+}
+
+function openRegistration() {
+    router.push('/registration')
+}
 
 </script>
 
