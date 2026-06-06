@@ -1,8 +1,4 @@
-export const enum SubscriptionTypes {
-    FREE = 'free',
-    PRO = 'pro',
-    TEAM = 'team',
-}
+import type { SubscriptionTypes } from "./subscriptions";
 
 export interface PriceItem {
     type: SubscriptionTypes,
