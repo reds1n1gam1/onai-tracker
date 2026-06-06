@@ -6,12 +6,13 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 ## MVP Scope
 
 - [x] Landing page
-- [ ] Sign up / Sign in
+- [x] Sign up / Sign in
 - [ ] Dashboard
+- [ ] Authentication and registration
 - [ ] Tasks CRUD
 - [ ] Priority scoring
 - [ ] Focus timer
-- [ ] History
+- [ ] History and stats
 - [ ] Settings
 
 # Nuxt Minimal Starter

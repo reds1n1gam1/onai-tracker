@@ -28,7 +28,7 @@
             <div class="grid gap-2">
                 <Label class="text-lg" for="password">Password</Label>
                 <InputGroup class="p-2 h-auto">
-                    <InputGroupInput class="text-lg" id="password" type="password" placeholder="Enter your email" />
+                    <InputGroupInput class="text-lg" id="password" type="password" placeholder="Enter your password" />
                     <InputGroupAddon>
                         <IconLockPassword size="48" />
                     </InputGroupAddon>

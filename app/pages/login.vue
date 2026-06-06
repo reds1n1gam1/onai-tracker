@@ -1,6 +1,6 @@
 <template>
     <div class="flex place-items-center place-content-center bg-gray-50 h-screen">
-        <LoginDialog class="w-9/12"/>
+        <LoginDialog class="w-7/12"/>
     </div>
 </template>
 
