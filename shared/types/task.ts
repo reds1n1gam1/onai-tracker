@@ -4,9 +4,17 @@ export const enum Priority {
     LOW = 'low'
 }
 
+export const enum Status {
+    TODO = '',
+    IN_PROGRESS = '',
+    DONE = '',
+}
+
 export interface Task {
     title: string,
     priority: Priority,
     project: string,
     shortDescription?: string,
+    trackedTime?: string,
+    status?: Status
 }
