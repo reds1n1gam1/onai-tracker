@@ -4,8 +4,8 @@
 
         <DashboardQuickTaskAdd />
 
-        <div class="grid grid-cols-3 gap-6">
-            <DashboardTodayTasksList class="col-span-2" />
+        <div class="grid grid-cols-4 gap-6">
+            <DashboardTodayTasksList class="col-span-3" />
 
             <DashboardRecommendedTask  />
         </div>

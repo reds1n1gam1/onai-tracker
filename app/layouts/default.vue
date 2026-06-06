@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="flex w-full h-screen">
+    <div class="flex w-full">
         <div>
             <app-sidebar />
         </div>

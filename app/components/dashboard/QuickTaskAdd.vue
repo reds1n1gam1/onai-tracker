@@ -39,7 +39,7 @@
                 </SelectContent>
             </Select>
 
-            <Button>Add task</Button>
+            <Button size="lg">Add task</Button>
         </div>
     </div>
 </template>
