@@ -12,8 +12,8 @@
             <h2 class="text-xl">Priority Time Tracker helps you organize tasks, track work sessions, and
                 automatically understand what deserves your attention next</h2>
             <div class="flex flex-row gap-4">
-                <Button size="lg" class=" text-lg p-6 font-bold">Start tracking time free</Button>
-                <Button size="lg" variant="secondary" class=" font-bold p-6 text-lg">See how it works</Button>
+                <Button @click="openRegistration()" size="lg" class="cursor-pointer text-lg p-6 font-bold">Start tracking time free</Button>
+                <Button size="lg" variant="secondary" class="cursor-pointer font-bold p-6 text-lg">See how it works</Button>
             </div>
 
             <div class="flex flex-row gap-2">
@@ -45,6 +45,12 @@
 import Button from '../ui/button/Button.vue';
 import LandingLabel from './ui/LandingLabel.vue';
 import { IconSparklesFilled, IconCircleCheckFilled } from '@tabler/icons-vue';
+
+const router = useRouter()
+
+function openRegistration(){
+    router.push('/registration')
+}
 </script>
 
 <style scoped>
