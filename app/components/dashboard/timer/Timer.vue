@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 flex flex-col justify-start items-center gap-3">
+        class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 flex flex-col justify-start items-center gap-4">
         <State :state="TimerState.PAUSED" />
 
         <div class="flex flex-row justify-center items-start">

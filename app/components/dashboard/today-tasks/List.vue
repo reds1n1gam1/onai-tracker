@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200">
-        Tasks list
+        <p class="text-lg font-semibold">Today tasks list</p>
     </div>
 </template>
 
