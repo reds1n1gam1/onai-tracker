@@ -44,7 +44,25 @@
                             {{ task.status }}
                         </TableCell>
                         <TableCell> {{ task.trackedTime }} </TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>
+                            <Menubar>
+                                <MenubarMenu>
+                                    <MenubarTrigger>
+                                        <IconDotsVertical />
+                                    </MenubarTrigger>
+                                    <MenubarContent>
+                                        <MenubarItem>
+                                            View details <MenubarShortcut>⌘T</MenubarShortcut>
+                                        </MenubarItem>
+                                        <MenubarItem>Open</MenubarItem>
+                                        <MenubarSeparator />
+                                        <MenubarItem>Edit</MenubarItem>
+                                        <MenubarSeparator />
+                                        <MenubarItem>Remove</MenubarItem>
+                                    </MenubarContent>
+                                </MenubarMenu>
+                            </Menubar>
+                        </TableCell>
                     </TableRow>
                 </TableBody>
                 <TableFooter>
@@ -79,7 +97,17 @@ import {
     TableHeader,
     TableRow,
 } from '~/components/ui/table'
+import {
+    Menubar,
+    MenubarContent,
+    MenubarItem,
+    MenubarMenu,
+    MenubarSeparator,
+    MenubarShortcut,
+    MenubarTrigger,
+} from '~/components/ui/menubar'
 import { Status } from '~~/shared/types/task';
+import { IconDotsVertical } from '@tabler/icons-vue';
 
 const mockTasks: Task[] = [
     {
