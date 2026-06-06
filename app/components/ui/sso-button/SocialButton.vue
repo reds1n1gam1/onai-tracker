@@ -1,5 +1,5 @@
 <template>
-    <div class="social-button w-full flex flex-row justify-center align-items-center gap-4 border-2 border-gray-300 rounded-md p-2">
+    <div class="social-button w-full flex flex-row justify-center align-items-center gap-4 border-2 border-gray-300 rounded-md p-2 cursor-pointer">
         <div class="social-button_icon">
             <IconBrandGoogle v-if="type === Socials.GOOGLE"/>
             <IconBrandGithubFilled  v-if="type === Socials.GITHUB"/>

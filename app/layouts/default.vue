@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import AppHeader from '~/components/AppHeader.vue';
-
 </script>
 
 <template>
-    <app-header />
-    <p>Some default layout content shared across all pages</p>
-    <slot />
-    <app-footer />
+    <div class="flex w-full h-screen">
+        <div>
+            <app-sidebar />
+        </div>
+
+        <div class="flex-1 bg-gray-100">
+            <app-header />
+
+            <div class="container mx-auto p-6 flex-1">
+                <slot />
+                <app-footer />
+            </div>
+        </div>
+
+    </div>
 </template>
