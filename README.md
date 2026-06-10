@@ -98,17 +98,24 @@ bun run preview
 npx prisma migrate dev --name init
 ```
 
-## Run Prisma studio
-
 ```npm
-npx prisma studio
+
+npx prisma generate
 ```
+
 
 ### Run the seed:
 ```npm
 
 npx prisma db seed
 ```
+
+## Run Prisma studio
+
+```npm
+npx prisma studio
+```
+
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
