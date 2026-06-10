@@ -7,7 +7,7 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 
 - [x] Landing page
 - [x] Sign up / Sign in
-- [ ] Dashboard
+- [x] Dashboard
 - [ ] Authentication and registration
 - [ ] Tasks CRUD
 - [ ] Priority scoring
