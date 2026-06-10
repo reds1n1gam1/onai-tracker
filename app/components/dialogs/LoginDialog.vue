@@ -14,11 +14,12 @@
 
         <hr>
 
-        <div class="login__form flex flex-col justify-items-stretch gap-4">
+        <form @submit.prevent="login" class="login__form flex flex-col justify-items-stretch gap-4">
             <div class="grid gap-2">
                 <Label class="text-lg" for="email">Email</Label>
                 <InputGroup class="p-2 h-auto">
-                    <InputGroupInput class="text-lg" id="email" type="email" placeholder="Enter your email" />
+                    <InputGroupInput v-model="credentials.email" class="text-lg" id="email" type="email"
+                        placeholder="Enter your email" />
                     <InputGroupAddon>
                         <IconMail size="48" stroke={2} />
                     </InputGroupAddon>
@@ -28,7 +29,8 @@
             <div class="grid gap-2">
                 <Label class="text-lg" for="password">Password</Label>
                 <InputGroup class="p-2 h-auto">
-                    <InputGroupInput class="text-lg" id="password" type="password" placeholder="Enter your password" />
+                    <InputGroupInput v-model="credentials.password" class="text-lg" id="password" type="password"
+                        placeholder="Enter your password" />
                     <InputGroupAddon>
                         <IconLockPassword size="48" />
                     </InputGroupAddon>
@@ -40,8 +42,8 @@
                 <Label for="remember-me" class="text-base font-normal">Remember me</Label>
 
             </div>
-            <Button class="text-lg p-6">Sign in</Button>
-        </div>
+            <Button type="submit" class="text-lg p-6">Sign in</Button>
+        </form>
 
         <div class="login__signup text-center w-8/12 mx-auto">
             Do not have account? <RouterLink class="text-blue-500 font-semibold" to="/registration">Sign up</RouterLink>
@@ -57,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import { toast } from 'vue-sonner';
 import Button from '../ui/button/Button.vue';
 import Checkbox from '../ui/checkbox/Checkbox.vue';
 import { InputGroupInput } from '../ui/input-group/index.js';
@@ -66,6 +69,27 @@ import Label from '../ui/label/Label.vue';
 import SocialButton from '../ui/sso-button/SocialButton.vue';
 import { IconMail, IconLockPassword } from '@tabler/icons-vue';
 
+const { loggedIn, user, fetch: refreshSession } = useUserSession();
+
+const credentials = reactive({
+    email: '',
+    password: '',
+});
+
+async function login() {
+    try {
+        await $fetch('/api/login', {
+            method: 'POST',
+            body: credentials,
+        })
+
+        // Refresh the session on client-side and redirect to the home page
+        await refreshSession()
+        await navigateTo('/dashboard')
+    } catch {
+        toast.error("Invalid credentials")
+    }
+}
 </script>
 
 <style scoped></style>

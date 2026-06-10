@@ -7,10 +7,15 @@
                 <IconBell />
             </button>
 
+            <p class="font-semibold">{{  }}</p>
+
             <Avatar>
                 <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
                 <AvatarFallback>ER</AvatarFallback>
             </Avatar>
+
+
+            <Button @click="logout">Log out</Button>
         </div>
     </div>
 </template>
@@ -20,6 +25,14 @@ import { IconBell } from '@tabler/icons-vue';
 import Avatar from './ui/avatar/Avatar.vue';
 import AvatarImage from './ui/avatar/AvatarImage.vue';
 import AvatarFallback from './ui/avatar/AvatarFallback.vue';
+import Button from './ui/button/Button.vue';
+
+const { loggedIn, user, session, fetch, clear: clearSession, openInPopup } = useUserSession()
+
+async function logout() {
+    await clearSession()
+    await navigateTo('/')
+}
 </script>
 
 <style scoped></style>
