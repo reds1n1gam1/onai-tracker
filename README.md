@@ -98,6 +98,11 @@ bun run preview
 npx prisma migrate dev --name init
 ```
 
+## Run Prisma studio
+
+```npm
+npx prisma studio
+```
 
 ### Run the seed:
 ```npm
