@@ -90,3 +90,71 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+```txt
+src/
+  app/
+    providers/
+    layouts/
+
+  pages/
+    dashboard/
+      ui/
+        DashboardPage.vue
+
+  widgets/
+    dashboard-timer/
+      ui/
+        DashboardTimer.vue
+
+    today-tasks-list/
+      ui/
+        TodayTasksList.vue
+
+    recommended-task-card/
+      ui/
+        RecommendedTaskCard.vue
+
+  features/
+    quick-add-task/
+      ui/
+        QuickAddTaskForm.vue
+      model/
+        useQuickAddTask.ts
+
+    start-timer/
+      ui/
+        StartTimerButton.vue
+      model/
+        useStartTimer.ts
+
+  entities/
+    task/
+      ui/
+        TaskRow.vue
+        TaskPriorityBadge.vue
+      model/
+        types.ts
+        constants.ts
+
+    project/
+      ui/
+        ProjectSelect.vue
+      model/
+        types.ts
+
+    timer-session/
+      model/
+        types.ts
+
+  shared/
+    ui/
+    lib/
+    api/
+
+```
+
+
+```txt
+type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
+```
