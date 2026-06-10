@@ -1,10 +1,10 @@
 <template>
     <div class="grid gap-6">
-        <div class="test">
+        <!-- <div class="test">
             <ul v-if="users?.length">
                 <li v-for="user in users" :key="user.id">{{ user.name }} ({{ user.email }})</li>
             </ul>
-        </div>
+        </div> -->
 
         <DashboardTimer />
 
@@ -20,7 +20,11 @@
 </template>
 
 <script setup>
-const { data: users } = await useFetch('/api/users')
+// const { data: users } = await useFetch('/api/users')
+
+definePageMeta({
+  middleware: ['authenticated'],
+})
 </script>
 
 <style lang="scss" scoped></style>
