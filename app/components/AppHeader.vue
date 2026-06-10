@@ -31,7 +31,7 @@ const { loggedIn, user, session, fetch, clear: clearSession, openInPopup } = use
 
 async function logout() {
     await clearSession()
-    await navigateTo('/login')
+    await navigateTo('/')
 }
 </script>
 

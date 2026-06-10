@@ -86,6 +86,10 @@ import Label from '../ui/label/Label.vue';
 import SocialButton from '../ui/sso-button/SocialButton.vue';
 import { IconMail, IconLockPassword, IconUserCircle } from '@tabler/icons-vue';
 
+
+
+const { fetch: refreshSession } = useUserSession();
+
 const credentials = reactive({
     name: '',
     email: '',
@@ -96,10 +100,13 @@ const credentials = reactive({
 
 async function register() {
     try {
-         await $fetch('/api/registration', {
+        await $fetch('/api/registration', {
             method: 'POST',
             body: credentials,
         })
+
+        await refreshSession()
+        await navigateTo('/dashboard')
     }
     catch {
         toast.error('Invalid data')
