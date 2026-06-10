@@ -11,21 +11,21 @@ export default defineEventHandler(async (event) => {
 
     let user = await prisma.user.findUnique({ where: { email } })
 
-    console.log(user)
-
     if (!user) {
+        const newPassword = await hashPassword(password)
+
         await prisma.user.create({
             data: {
                 email,
                 name,
-                password,
+                password: newPassword,
                 role: 'USER',
             },
         })
 
         await setUserSession(event, {
             user: {
-                name: 'John Doe',
+                name,
             },
         })
 
