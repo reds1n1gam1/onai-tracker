@@ -13,8 +13,8 @@ export type TimeSession = {
     pausedAt?: Date,
     endedAt?: Date,
     durationSeconds: number,
-    //user:            User, 
-    //task:            Task, 
+    user:            User, 
+    task:            Task, 
     createdAt: Date,
     updatedAt: Date,
 
