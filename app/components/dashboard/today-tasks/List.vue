@@ -36,10 +36,10 @@
                     <TableRow v-for="(session, index) in timeSessions" :key="index">
                         <TableCell></TableCell>
                         <TableCell class="font-medium">
-                            {{ session.taskId }}
+                            {{ session.task.title }}
                         </TableCell>
-                        <!-- <TableCell>{{ session.project }}</TableCell> -->
-                        <!-- <TableCell>{{ session.priority }}</TableCell> -->
+                        <TableCell>{{ session.task.project?.name }}</TableCell>
+                        <TableCell>{{ session.task.priority }}</TableCell>
                         <TableCell>
                             {{ session.status }}
                         </TableCell>
@@ -106,7 +106,6 @@ import {
     MenubarShortcut,
     MenubarTrigger,
 } from '~/components/ui/menubar'
-import { Status } from '~~/shared/types/task';
 import { IconDotsVertical } from '@tabler/icons-vue';
 import { toast } from 'vue-sonner';
 
@@ -118,7 +117,7 @@ onMounted(() => {
 
 async function loadTasks() {
     try {
-        const sessions: TimeSession[] = await $fetch('/api/time-sessions/', {
+        const sessions: TimeSession[] = await $fetch('/api/time-sessions/active', {
             method: 'GET'
         })
 
@@ -127,7 +126,7 @@ async function loadTasks() {
         timeSessions.value = sessions
 
     } catch {
-        toast.error("Invalid credentials")
+        toast.error("Load error")
     }
 }
 

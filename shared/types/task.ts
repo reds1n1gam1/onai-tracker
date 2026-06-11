@@ -1,4 +1,4 @@
-export const enum Priority {
+export enum Priority {
     URGENT = 'urgent',
     MEDIUM = 'medium',
     LOW = 'low'
