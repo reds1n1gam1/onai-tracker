@@ -89,33 +89,6 @@ yarn preview
 bun run preview
 ```
 
-## Prisma
-
-### Run the migration to create your database tables:
-
-```npm
-
-npx prisma migrate dev --name init
-```
-
-```npm
-
-npx prisma generate
-```
-
-
-### Run the seed:
-```npm
-
-npx prisma db seed
-```
-
-## Run Prisma studio
-
-```npm
-npx prisma studio
-```
-
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 

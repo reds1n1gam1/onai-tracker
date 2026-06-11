@@ -8,7 +8,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prisma-migrate": "npx prisma migrate dev --name init",
+    "prisma-generate": "npx prisma generate",
+    "prisma-seed": "npx prisma db seed",
+    "prisma-studio": "npx prisma studio"
   },
   "dependencies": {
     "@lucide/vue": "^1.16.0",
