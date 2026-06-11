@@ -12,6 +12,27 @@ enum Role {
   ADMIN
 }
 
+enum Priority {
+  low
+  medium
+  high
+  critical
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  paused
+  done
+  canceled
+}
+
+enum TimeSessionStatus {
+  running
+  paused
+  completed
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -21,18 +42,81 @@ model User {
   image         String?
   role          Role      @default(USER)
   createdAt     DateTime  @default(now())
-  // updatedAt     DateTime  @updatedAt
   githubId      String?   @unique
   googleId      String?   @unique
-  // UserToken     UserToken[]
+
+  projects      Project[]
+  tasks         Task[]
+  timeSessions  TimeSession[]
+
+  @@map("users")
 }
 
-// model UserToken {
-//   id        String   @id @default(cuid())
-//   token     String   @unique
-//   otp       String?
-//   email     String
-//   user      User     @relation(fields: [email], references: [email])
-//   createdAt DateTime @default(now())
-//   expiresAt DateTime
-// }
+model Project {
+  id          String   @id @default(cuid())
+  userId      String
+
+  name        String
+  color       String?
+  description String?
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@map("projects")
+}
+
+model Task {
+  id               String     @id @default(cuid())
+  userId           String
+  projectId        String?
+
+  title            String
+  shortDescription String?
+  priority         Priority   @default(medium)
+  status           TaskStatus @default(todo)
+
+  estimatedMinutes Int?
+  trackedSeconds   Int        @default(0)
+  dueDate          DateTime?
+
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project          Project?   @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  timeSessions     TimeSession[]
+
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  @@index([userId])
+  @@index([projectId])
+  @@index([status])
+  @@index([priority])
+  @@map("tasks")
+}
+
+model TimeSession {
+  id              String            @id @default(cuid())
+  userId          String
+  taskId          String
+
+  status          TimeSessionStatus @default(running)
+  startedAt       DateTime          @default(now())
+  pausedAt        DateTime?
+  endedAt         DateTime?
+  durationSeconds Int               @default(0)
+
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task            Task              @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([userId])
+  @@index([taskId])
+  @@index([startedAt])
+  @@map("time_sessions")
+}

@@ -15,3 +15,33 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const Priority = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high',
+  critical: 'critical'
+} as const
+
+export type Priority = (typeof Priority)[keyof typeof Priority]
+
+
+export const TaskStatus = {
+  todo: 'todo',
+  in_progress: 'in_progress',
+  paused: 'paused',
+  done: 'done',
+  canceled: 'canceled'
+} as const
+
+export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
+
+
+export const TimeSessionStatus = {
+  running: 'running',
+  paused: 'paused',
+  completed: 'completed'
+} as const
+
+export type TimeSessionStatus = (typeof TimeSessionStatus)[keyof typeof TimeSessionStatus]
