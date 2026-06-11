@@ -100,7 +100,7 @@ const credentials = reactive({
 
 async function register() {
     try {
-        await $fetch('/api/registration', {
+        await $fetch('/api/auth/registration', {
             method: 'POST',
             body: credentials,
         })

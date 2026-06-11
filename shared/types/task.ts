@@ -1,20 +1,33 @@
-export const enum Priority {
+export enum Priority {
     URGENT = 'urgent',
     MEDIUM = 'medium',
     LOW = 'low'
 }
 
-export const enum Status {
+export const enum TaskStatus {
     TODO = '',
     IN_PROGRESS = '',
     DONE = '',
 }
 
 export interface Task {
+    id: string,
+    userId: string
+    projectId?: string,
+
     title: string,
-    priority: Priority,
-    project: string,
     shortDescription?: string,
-    trackedTime?: string,
-    status?: Status
+    priority: Priority,
+    status: TaskStatus,
+
+    estimatedMinutes?: number,
+    trackedSeconds: number,
+    dueDate?: Date,
+
+    user: User,
+    project?: Project,
+    timeSessions: TimeSession[]
+
+    createdAt: Date,
+    updatedAt: Date,
 }
