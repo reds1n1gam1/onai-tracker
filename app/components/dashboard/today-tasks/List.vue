@@ -33,17 +33,17 @@
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow v-for="(task, index) in mockTasks" :key="index">
+                    <TableRow v-for="(session, index) in timeSessions" :key="index">
                         <TableCell></TableCell>
                         <TableCell class="font-medium">
-                            {{ task.title }}
+                            {{ session.taskId }}
                         </TableCell>
-                        <TableCell>{{ task.project }}</TableCell>
-                        <TableCell>{{ task.priority }}</TableCell>
+                        <!-- <TableCell>{{ session.project }}</TableCell> -->
+                        <!-- <TableCell>{{ session.priority }}</TableCell> -->
                         <TableCell>
-                            {{ task.status }}
+                            {{ session.status }}
                         </TableCell>
-                        <TableCell> {{ task.trackedTime }} </TableCell>
+                        <TableCell> {{ session.durationSeconds }} </TableCell>
                         <TableCell>
                             <Menubar>
                                 <MenubarMenu>
@@ -69,7 +69,7 @@
                     <TableRow>
                         <TableCell></TableCell>
                         <TableCell colspan="3">
-                            Showing 6 of {{ mockTasks.length }}
+                            Showing 6 of {{ timeSessions.length }}
                         </TableCell>
                         <TableCell colspan="1">
                             Total
@@ -108,49 +108,29 @@ import {
 } from '~/components/ui/menubar'
 import { Status } from '~~/shared/types/task';
 import { IconDotsVertical } from '@tabler/icons-vue';
+import { toast } from 'vue-sonner';
 
-const mockTasks: Task[] = [
-    {
-        title: 'Design dashboard timer block',
-        priority: Priority.URGENT,
-        project: 'Priority Time Tracker',
-        shortDescription: 'Create the main timer section with task context and controls.',
-        trackedTime: '01:35:00',
-        status: Status.IN_PROGRESS,
-    },
-    {
-        title: 'Implement quick task input',
-        priority: Priority.MEDIUM,
-        project: 'Priority Time Tracker',
-        shortDescription: 'Add a form for creating tasks with priority, text, and project selection.',
-        trackedTime: '00:45:00',
-        status: Status.DONE,
-    },
-    {
-        title: 'Create today tasks list',
-        priority: Priority.LOW,
-        project: 'Dashboard',
-        shortDescription: 'Show tasks planned for today with tracked time and current status.',
-        trackedTime: '02:10:00',
-        status: Status.TODO,
-    },
-    {
-        title: 'Build recommended task card',
-        priority: Priority.URGENT,
-        project: 'Smart Priority',
-        shortDescription: 'Display the task with the highest priority score.',
-        trackedTime: '00:25:00',
-        status: Status.TODO,
-    },
-    {
-        title: 'Prepare landing page FAQ',
-        priority: Priority.MEDIUM,
-        project: 'Marketing Website',
-        shortDescription: 'Write FAQ content for the public landing page.',
-        trackedTime: '00:30:00',
-        status: Status.TODO,
-    },
-]
+const timeSessions: Ref<TimeSession[]> = ref([])
+
+onMounted(() => {
+    loadTasks()
+})
+
+async function loadTasks() {
+    try {
+        const sessions: TimeSession[] = await $fetch('/api/time-sessions/', {
+            method: 'GET'
+        })
+
+        console.log(sessions)
+
+        timeSessions.value = sessions
+
+    } catch {
+        toast.error("Invalid credentials")
+    }
+}
+
 </script>
 
 <style scoped></style>
