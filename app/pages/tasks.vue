@@ -7,10 +7,6 @@
       >
     </WidgetsTitleBlock>
 
-    <div class="task-stats"></div>
-
-    <div class="task-filter"></div>
-
     <div class="tasks-table">
       <Table>
         <TableCaption>All tasks list</TableCaption>
@@ -53,6 +49,14 @@
         </TableFooter>
       </Table>
     </div>
+
+    <Alert>
+      <IconInfoCircle />
+      <AlertTitle>Manage your daily work</AlertTitle>
+      <AlertDescription>
+        Create, prioritize, and track tasks to stay focused on what matters most
+      </AlertDescription>
+    </Alert>
   </div>
 </template>
 
@@ -67,6 +71,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 
 import { toast } from "vue-sonner";
 
