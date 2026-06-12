@@ -20,7 +20,7 @@
             <TableHead>Est. Time</TableHead>
             <TableHead>Tracked time</TableHead>
             <TableHead>Project</TableHead>
-            <TableHead class="text-right"> </TableHead>
+            <TableHead> </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -39,7 +39,25 @@
             <TableCell> {{ task.estimatedMinutes }} </TableCell>
             <TableCell> {{ task.trackedSeconds }} </TableCell>
             <TableCell> {{ task.project?.name }} </TableCell>
-            <TableCell class="text-right"> </TableCell>
+            <TableCell>
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>
+                    <IconDotsVertical />
+                  </MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>
+                      View details <MenubarShortcut>⌘T</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem>Open</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Edit</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Remove</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+            </TableCell>
           </TableRow>
         </TableBody>
         <TableFooter>
@@ -72,8 +90,18 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "~/components/ui/menubar";
 
 import { toast } from "vue-sonner";
+import { IconDotsVertical } from "@tabler/icons-vue";
 
 const tasks: Ref<Task[]> = ref([]);
 
