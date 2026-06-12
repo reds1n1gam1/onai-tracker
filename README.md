@@ -10,11 +10,11 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 - [x] Dashboard
 - [x] Authentication and registration
 - [x] Tasks CRUD
-- [ ] Priority scoring
-- [ ] Focus timer
 - [x] Projects
 - [x] Tasks
-- [ ] Settings
+- [x] Settings
+- [ ] Priority scoring
+- [ ] Focus timer
 
 # Nuxt Minimal Starter
 
