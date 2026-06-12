@@ -7,6 +7,36 @@
       >
     </WidgetsTitleBlock>
 
+    <div class="flex justify-start gap-4">
+      <StatItem color="gray">
+        <template v-slot:icon><IconList /></template>
+        <template v-slot:title>All Tasks</template>
+        <template v-slot:value>{{ tasks.length }}</template>
+      </StatItem>
+    </div>
+
+    <div class="flex flex-row justify-between gap-2">
+      <InputGroup class="w-2/12">
+        <InputGroupInput placeholder="Search..." />
+        <InputGroupAddon>
+          <IconSearch />
+        </InputGroupAddon>
+      </InputGroup>
+
+      <Select>
+        <SelectTrigger class="w-[180px]">
+          <SelectValue placeholder="Sort by" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple"> Recent </SelectItem>
+            <SelectItem value="banana"> Tasks </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+
     <div class="tasks-table">
       <Table>
         <TableCaption>All tasks list</TableCaption>
@@ -26,19 +56,28 @@
         <TableBody>
           <TableRow v-for="(task, index) in tasks" :key="index">
             <TableCell class="font-medium"> </TableCell>
-            <TableCell> {{ task.title }} </TableCell>
+            <TableCell>
+              <p class="text-base font-semibold">{{ task.title }}</p>
+              <p class="text-sm text-gray-400">{{ task.shortDescription }}</p>
+            </TableCell>
             <TableCell>
               <Priority :priority="task.priority" />
             </TableCell>
             <TableCell>
               <Status :status="task.status" />
             </TableCell>
-            <TableCell>
+            <TableCell class="text-base font-semibold">
               {{ toDate(task.dueDate as unknown as string) }}
             </TableCell>
-            <TableCell> {{ task.estimatedMinutes }} </TableCell>
-            <TableCell> {{ task.trackedSeconds }} </TableCell>
-            <TableCell> {{ task.project?.name }} </TableCell>
+            <TableCell class="text-base font-semibold">
+              {{ task.estimatedMinutes }}
+            </TableCell>
+            <TableCell class="text-base font-semibold">
+              {{ secondsToDate(task.trackedSeconds) }}
+            </TableCell>
+            <TableCell class="text-base font-semibold">
+              {{ task.project?.name }}
+            </TableCell>
             <TableCell>
               <Menubar>
                 <MenubarMenu>
@@ -101,7 +140,7 @@ import {
 } from "~/components/ui/menubar";
 
 import { toast } from "vue-sonner";
-import { IconDotsVertical } from "@tabler/icons-vue";
+import { IconDotsVertical, IconList } from "@tabler/icons-vue";
 
 const tasks: Ref<Task[]> = ref([]);
 
