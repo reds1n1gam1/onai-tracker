@@ -6,6 +6,9 @@
         >Create projects to group related tasks, track progress, and understand
         where your time is being spent.</template
       >
+      <template v-slot:actions>
+        <Button size="lg">Add project</Button>
+      </template>
     </WidgetsTitleBlock>
 
     <div class="flex justify-start gap-4">
