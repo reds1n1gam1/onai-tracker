@@ -89,7 +89,6 @@ yarn preview
 bun run preview
 ```
 
-
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ```txt
@@ -154,7 +153,6 @@ src/
     api/
 
 ```
-
 
 ```txt
 type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]

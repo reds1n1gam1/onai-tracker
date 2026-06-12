@@ -1,10 +1,10 @@
-declare module '#auth-utils' {
+declare module "#auth-utils" {
   interface User {
-    id: string
-    email: string
-    name?: string | null
-    role?: 'USER' | 'ADMIN'
+    id: string;
+    email: string;
+    name?: string | null;
+    role?: "USER" | "ADMIN";
   }
 }
 
-export {}
+export {};

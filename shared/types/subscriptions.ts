@@ -1,5 +1,5 @@
 export const enum SubscriptionTypes {
-    FREE = 'free',
-    PRO = 'pro',
-    TEAM = 'team',
+  FREE = "free",
+  PRO = "pro",
+  TEAM = "team",
 }

@@ -1,5 +1,5 @@
 export const enum TimerButtonStates {
-    PLAY = 'play',
-    PAUSE = 'pause',
-    RESET = 'reset',
+  PLAY = "play",
+  PAUSE = "pause",
+  RESET = "reset",
 }

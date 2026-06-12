@@ -1,4 +1,4 @@
 export interface QuestionItem {
-    title: string,
-    content: string,
+  title: string;
+  content: string;
 }
