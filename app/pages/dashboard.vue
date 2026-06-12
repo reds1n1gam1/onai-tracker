@@ -15,10 +15,20 @@
 
       <DashboardRecommendedTask />
     </div>
+
+    <Alert>
+      <IconInfoCircle />
+      <AlertTitle>Stay focused on your most important work</AlertTitle>
+      <AlertDescription>
+        Track active tasks, monitor time spent, and quickly see what deserves
+        your attention next.
+      </AlertDescription>
+    </Alert>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 // const { data: users } = await useFetch('/api/users')
 
 definePageMeta({

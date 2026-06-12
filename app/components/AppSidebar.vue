@@ -12,9 +12,9 @@
               :to="item.route"
               activeClass="bg-blue-100 text-blue-500"
               exactActiveClass="bg-blue-100 text-blue-500"
-              class="text-lg font-medium flex flex-row gap-2 p-4 rounded-md items-center hover:bg-blue-100 hover:text-blue-500"
+              class="text-base font-medium flex flex-row gap-2 p-4 rounded-md items-center hover:bg-blue-100 hover:text-blue-500"
             >
-              <component :is="item.icon" :size="30" />
+              <component :is="item.icon" :size="24" />
               <p>{{ item.title }}</p>
             </RouterLink>
           </li>
