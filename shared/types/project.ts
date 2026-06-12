@@ -1,14 +1,14 @@
 export interface Project {
-    id: string,
-    userId: string,
+  id: string;
+  userId: string;
 
-    name: string,
-    color?: string,
-    description?: string,
+  name: string;
+  color?: string;
+  description?: string;
 
-    user: User,
-    tasks: Task[],
+  user: User;
+  tasks: Task[];
 
-    createdAt: Date,
-    updatedAt: Date,
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -1,33 +1,34 @@
 export enum Priority {
-    URGENT = 'urgent',
-    MEDIUM = 'medium',
-    LOW = 'low'
+  CRITICAL = "critical",
+  HIGH = "high",
+  MEDIUM = "medium",
+  LOW = "low",
 }
 
 export const enum TaskStatus {
-    TODO = '',
-    IN_PROGRESS = '',
-    DONE = '',
+  TODO = "todo",
+  IN_PROGRESS = "in_progress",
+  DONE = "done",
 }
 
 export interface Task {
-    id: string,
-    userId: string
-    projectId?: string,
+  id: string;
+  userId: string;
+  projectId?: string;
 
-    title: string,
-    shortDescription?: string,
-    priority: Priority,
-    status: TaskStatus,
+  title: string;
+  shortDescription?: string;
+  priority: Priority;
+  status: TaskStatus;
 
-    estimatedMinutes?: number,
-    trackedSeconds: number,
-    dueDate?: Date,
+  estimatedMinutes?: number;
+  trackedSeconds: number;
+  dueDate?: Date;
 
-    user: User,
-    project?: Project,
-    timeSessions: TimeSession[]
+  user: User;
+  project?: Project;
+  timeSessions: TimeSession[];
 
-    createdAt: Date,
-    updatedAt: Date,
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -1,4 +1,4 @@
 export const enum TimerState {
-    RUNNING = 'running',
-    PAUSED = 'paused'
+  RUNNING = "running",
+  PAUSED = "paused",
 }

@@ -1,10 +1,17 @@
 <script lang="ts" setup>
-import type { ToasterProps } from "vue-sonner"
-import { CircleCheckIcon, InfoIcon, IconLoader2, OctagonXIcon, TriangleAlertIcon, IconX } from '@tabler/icons-vue'
-import { Toaster as Sonner } from "vue-sonner"
-import { cn } from "@/lib/utils"
+import type { ToasterProps } from "vue-sonner";
+import {
+  CircleCheckIcon,
+  InfoIcon,
+  IconLoader2,
+  OctagonXIcon,
+  TriangleAlertIcon,
+  IconX,
+} from "@tabler/icons-vue";
+import { Toaster as Sonner } from "vue-sonner";
+import { cn } from "@/lib/utils";
 
-const props = defineProps<ToasterProps>()
+const props = defineProps<ToasterProps>();
 </script>
 
 <template>

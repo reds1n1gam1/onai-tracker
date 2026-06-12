@@ -1,5 +1,5 @@
 export default defineEventHandler((event) => {
-  const cookies = parseCookies(event)
+  const cookies = parseCookies(event);
 
-  return { cookies }
-})
+  return { cookies };
+});

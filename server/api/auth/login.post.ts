@@ -1,21 +1,21 @@
-import { verifyPassword } from '#imports'
-import { z } from 'zod'
+import { verifyPassword } from "#imports";
+import { z } from "zod";
 
 const bodySchema = z.object({
   email: z.email(),
   password: z.string().min(8),
-})
+});
 
 export default defineEventHandler(async (event) => {
-  const { email, password } = await readValidatedBody(event, bodySchema.parse)
+  const { email, password } = await readValidatedBody(event, bodySchema.parse);
 
-  let user = await prisma.user.findUnique({ where: { email } })
+  let user = await prisma.user.findUnique({ where: { email } });
 
   if (!user) {
     throw createError({
       status: 401,
-      message: 'Invalid credentials',
-    })
+      message: "Invalid credentials",
+    });
   }
 
   const isPasswordCorrect = await verifyPassword(user.password, password);
@@ -23,8 +23,8 @@ export default defineEventHandler(async (event) => {
   if (!isPasswordCorrect) {
     throw createError({
       status: 401,
-      message: 'Invalid credentials',
-    })
+      message: "Invalid credentials",
+    });
   }
 
   await setUserSession(event, {
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
       name: user.name,
       email: user.email,
     },
-  })
+  });
 
-  return true
-})
+  return true;
+});
