@@ -8,11 +8,12 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 - [x] Landing page
 - [x] Sign up / Sign in
 - [x] Dashboard
-- [ ] Authentication and registration
-- [ ] Tasks CRUD
+- [x] Authentication and registration
+- [x] Tasks CRUD
 - [ ] Priority scoring
 - [ ] Focus timer
-- [ ] History and stats
+- [x] Projects
+- [x] Tasks
 - [ ] Settings
 
 # Nuxt Minimal Starter
