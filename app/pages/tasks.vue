@@ -5,6 +5,9 @@
       <template v-slot:description
         >Organize your work and focus on what matters most</template
       >
+      <template v-slot:actions>
+        <Button size="lg">Add task</Button>
+      </template>
     </WidgetsTitleBlock>
 
     <div class="flex justify-start gap-4">
@@ -141,6 +144,7 @@ import {
 
 import { toast } from "vue-sonner";
 import { IconDotsVertical, IconList } from "@tabler/icons-vue";
+import Button from "~/components/ui/button/Button.vue";
 
 const tasks: Ref<Task[]> = ref([]);
 

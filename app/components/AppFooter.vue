@@ -11,7 +11,7 @@
       <ul class="text-gray-500 flex flex-row gap-6">
         <RouterLink to="/help">Help</RouterLink>
         <RouterLink to="/privacy">Privacy</RouterLink>
-        <RouterLink to="/terms">Terms of Service</RouterLink>
+        <RouterLink to="/terms-of-service">Terms of Service</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
       </ul>
     </nav>
