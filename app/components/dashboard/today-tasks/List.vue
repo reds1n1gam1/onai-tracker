@@ -112,16 +112,14 @@ import { toast } from 'vue-sonner';
 const timeSessions: Ref<TimeSession[]> = ref([])
 
 onMounted(() => {
-    loadTasks()
+    loadTimeSessions()
 })
 
-async function loadTasks() {
+async function loadTimeSessions() {
     try {
         const sessions: TimeSession[] = await $fetch('/api/time-sessions/active', {
             method: 'GET'
         })
-
-        console.log(sessions)
 
         timeSessions.value = sessions
 

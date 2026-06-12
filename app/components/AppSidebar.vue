@@ -57,10 +57,6 @@ const menuItems: Ref<MenuItem[]> = ref([
         route: '/projects'
     },
     {
-        title: 'Tags',
-        icon: IconTag,
-        route: '/tags'
-    }, {
         title: 'Settings',
         icon: IconSettings,
         route: '/settings'
