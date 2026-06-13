@@ -5,6 +5,9 @@ export default defineEventHandler(async (event) => {
     where: {
       userId: session.user.id,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
     include: {
       task: {
         include: {

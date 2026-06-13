@@ -34,7 +34,9 @@
               {{ session.task.title }}
             </TableCell>
             <TableCell>{{ session.task.project?.name }}</TableCell>
-            <TableCell>{{ session.task.priority }}</TableCell>
+            <TableCell>
+              <Priority :priority="session.task.priority" />
+            </TableCell>
             <TableCell>
               {{ session.status }}
             </TableCell>
@@ -107,7 +109,7 @@ onMounted(() => {
 
 async function loadTimeSessions() {
   try {
-    const sessions: TimeSession[] = await $fetch("/api/time-sessions/active", {
+    const sessions: TimeSession[] = await $fetch("/api/time-sessions/active/", {
       method: "GET",
     });
 

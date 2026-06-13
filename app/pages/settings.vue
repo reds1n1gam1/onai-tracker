@@ -74,7 +74,7 @@ const form = reactive({
 });
 
 async function loadProfileData() {
-  const profileData: User = await $fetch("/api/profile", {
+  const profileData: User = await $fetch("/api/profile/", {
     method: "GET",
   });
 
