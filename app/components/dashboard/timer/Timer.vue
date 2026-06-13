@@ -6,9 +6,7 @@
 
     <div class="flex flex-row justify-center items-start">
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ time.getHours() }}
-        </p>
+        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
         >
@@ -19,9 +17,7 @@
       <div class="text-center text-7xl text-blue-500 font-semibold">:</div>
 
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ time.getMinutes() }}
-        </p>
+        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
         >
@@ -32,9 +28,7 @@
       <div class="text-center text-7xl text-blue-500 font-semibold">:</div>
 
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ time.getSeconds() }}
-        </p>
+        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
         >
@@ -58,9 +52,9 @@
     <hr class="w-6/12" />
 
     <div class="grid grid-cols-3 gap-6">
-      <ControlButton :active="true" :type="TimerButtonStates.PLAY" />
+      <ControlButton :type="TimerButtonStates.PLAY" />
       <ControlButton :type="TimerButtonStates.PAUSE" />
-      <ControlButton :type="TimerButtonStates.RESET" />
+      <ControlButton :type="TimerButtonStates.STOP" />
     </div>
   </div>
 </template>
@@ -68,18 +62,6 @@
 <script setup lang="ts">
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
-
-const time: Ref<Date> = ref(new Date());
-
-function startTimer() {
-  setInterval(() => {
-    time.value = new Date();
-  }, 1000);
-}
-
-onMounted(() => {
-  startTimer();
-});
 </script>
 
 <style scoped></style>
