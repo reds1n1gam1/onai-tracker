@@ -7,7 +7,7 @@
     <div class="flex flex-row justify-center items-start">
       <div class="flex flex-col justify-start items-center w-20">
         <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ new Date().getHours() }}
+          {{ time.getHours() }}
         </p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
@@ -20,7 +20,7 @@
 
       <div class="flex flex-col justify-start items-center w-20">
         <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ new Date().getMinutes() }}
+          {{ time.getMinutes() }}
         </p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
@@ -33,7 +33,7 @@
 
       <div class="flex flex-col justify-start items-center w-20">
         <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ new Date().getSeconds() }}
+          {{ time.getSeconds() }}
         </p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
@@ -68,6 +68,18 @@
 <script setup lang="ts">
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
+
+const time: Ref<Date> = ref(new Date());
+
+function startTimer() {
+  setInterval(() => {
+    time.value = new Date();
+  }, 1000);
+}
+
+onMounted(() => {
+  startTimer();
+});
 </script>
 
 <style scoped></style>
