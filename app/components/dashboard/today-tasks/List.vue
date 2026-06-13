@@ -40,7 +40,14 @@
             <TableCell>
               {{ session.status }}
             </TableCell>
-            <TableCell> {{ session.durationSeconds }} </TableCell>
+            <TableCell>
+              <div class="flex flex-row justify-start items-center gap-2">
+                <p>{{ secondsToDate(session.durationSeconds) }}</p>
+
+                <div class="rounded-full p-2 bg-blue-200 text-blue-600">
+                  <IconPlayerPlay />
+                </div></div
+            ></TableCell>
             <TableCell>
               <Menubar>
                 <MenubarMenu>
@@ -98,7 +105,7 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "~/components/ui/menubar";
-import { IconDotsVertical } from "@tabler/icons-vue";
+import { IconDotsVertical, IconPlayerPlay } from "@tabler/icons-vue";
 import { toast } from "vue-sonner";
 
 const timeSessions: Ref<TimeSession[]> = ref([]);
