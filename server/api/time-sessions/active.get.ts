@@ -1,12 +1,10 @@
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event);
 
-  const activeSession = await prisma.timeSession.findMany({
+  const activeSession = await prisma.timeSession.findFirst({
     where: {
       userId: session.user.id,
-    },
-    orderBy: {
-      updatedAt: "desc",
+      status: "running",
     },
     include: {
       task: {
@@ -16,8 +14,6 @@ export default defineEventHandler(async (event) => {
       },
     },
   });
-
-  console.log(activeSession);
 
   return activeSession;
 });

@@ -2,37 +2,17 @@
   <div
     class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 flex flex-col justify-start items-center gap-4"
   >
-    <State :state="TimerState.PAUSED" />
+    <State :state="currentTimerState" />
 
     <div class="flex flex-row justify-center items-start">
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
-        <p
-          class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
-        >
-          HRS
+        <p class="text-center text-7xl text-blue-500 font-semibold">
+          {{ secondsToDate(elapsedTime) || "00:00:00" }}
         </p>
-      </div>
-
-      <div class="text-center text-7xl text-blue-500 font-semibold">:</div>
-
-      <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
         <p
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
         >
-          MINS
-        </p>
-      </div>
-
-      <div class="text-center text-7xl text-blue-500 font-semibold">:</div>
-
-      <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">00</p>
-        <p
-          class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
-        >
-          SECS
+          HRS MINS SECS
         </p>
       </div>
     </div>
@@ -60,8 +40,30 @@
 </template>
 
 <script setup lang="ts">
+import { useTimerStore } from "~/store/useTimerStore.js";
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
+
+const store = useTimerStore();
+
+const currentTimerState = ref("");
+const taskStartedAt: Ref<Date | undefined> = ref();
+
+const elapsedTime: Ref<number> = ref(0);
+
+onMounted(() => {
+  setInterval(() => {
+    currentTimerState.value = store.getCurrentState;
+    taskStartedAt.value = store.getStartedAt;
+
+    if (taskStartedAt.value) {
+      const nowDate = new Date();
+
+      elapsedTime.value =
+        (nowDate.getTime() - taskStartedAt.value.getTime()) / 1000;
+    }
+  }, 1000);
+});
 </script>
 
 <style scoped></style>
