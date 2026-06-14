@@ -114,6 +114,8 @@ import { useTimerStore } from "~/store/useTimerStore";
 
 const store = useTimerStore();
 
+const currentTimerState = ref(store.currentState);
+
 const timeSessions: Ref<TimeSession[]> = ref([]);
 
 onMounted(() => {
@@ -143,6 +145,12 @@ async function startTimer(taskId: string) {
   const nowDate = new Date();
   store.startTimeSession(taskId, nowDate);
 }
+
+watch(currentTimerState, async (prev, curr) => {
+  if (prev != curr) {
+    loadTimeSessions();
+  }
+});
 </script>
 
 <style scoped></style>
