@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["shadcn-nuxt", "nuxt-auth-utils"],
+  modules: ["shadcn-nuxt", "nuxt-auth-utils", "@pinia/nuxt"],
   shadcn: {
     /**
      * Prefix for all the imported component.

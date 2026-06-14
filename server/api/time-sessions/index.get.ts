@@ -1,10 +1,21 @@
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event);
 
-  const projects = await prisma.timeSession.findMany({
-    where: { userId: session.user.id },
-    orderBy: { id: "desc" },
+  const timeSessions = await prisma.timeSession.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+    include: {
+      task: {
+        include: {
+          project: true,
+        },
+      },
+    },
   });
 
-  return projects;
+  return timeSessions;
 });

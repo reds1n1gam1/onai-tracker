@@ -16,7 +16,7 @@ import type { Icon } from "@tabler/icons-vue";
 import {
   IconPlayerPlayFilled,
   IconPlayerPauseFilled,
-  IconReload,
+  IconPlayerStop,
 } from "@tabler/icons-vue";
 
 type ButtonData = {
@@ -39,9 +39,9 @@ buttonsData.value.set(TimerButtonStates.PAUSE, {
   text: "Pause",
   icon: IconPlayerPauseFilled,
 });
-buttonsData.value.set(TimerButtonStates.RESET, {
-  text: "Reset",
-  icon: IconReload,
+buttonsData.value.set(TimerButtonStates.STOP, {
+  text: "Stop",
+  icon: IconPlayerStop,
 });
 </script>
 

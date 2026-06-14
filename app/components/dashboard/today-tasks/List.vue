@@ -34,11 +34,23 @@
               {{ session.task.title }}
             </TableCell>
             <TableCell>{{ session.task.project?.name }}</TableCell>
-            <TableCell>{{ session.task.priority }}</TableCell>
+            <TableCell>
+              <Priority :priority="session.task.priority" />
+            </TableCell>
             <TableCell>
               {{ session.status }}
             </TableCell>
-            <TableCell> {{ session.durationSeconds }} </TableCell>
+            <TableCell>
+              <div class="flex flex-row justify-start items-center gap-2">
+                <p>{{ secondsToDate(session.durationSeconds) }}</p>
+
+                <div
+                  @click="startTimer(session.taskId)"
+                  class="rounded-full p-2 bg-blue-200 text-blue-600"
+                >
+                  <IconPlayerPlay />
+                </div></div
+            ></TableCell>
             <TableCell>
               <Menubar>
                 <MenubarMenu>
@@ -96,8 +108,13 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "~/components/ui/menubar";
-import { IconDotsVertical } from "@tabler/icons-vue";
+import { IconDotsVertical, IconPlayerPlay } from "@tabler/icons-vue";
 import { toast } from "vue-sonner";
+import { useTimerStore } from "~/store/useTimerStore";
+
+const store = useTimerStore();
+
+const currentTimerState = ref(store.currentState);
 
 const timeSessions: Ref<TimeSession[]> = ref([]);
 
@@ -107,7 +124,7 @@ onMounted(() => {
 
 async function loadTimeSessions() {
   try {
-    const sessions: TimeSession[] = await $fetch("/api/time-sessions/active", {
+    const sessions: TimeSession[] = await $fetch("/api/time-sessions/", {
       method: "GET",
     });
 
@@ -116,6 +133,24 @@ async function loadTimeSessions() {
     toast.error("Load error");
   }
 }
+
+async function startTimer(taskId: string) {
+  const startTimer = await $fetch("/api/time-sessions/start", {
+    method: "POST",
+    body: {
+      taskId,
+    },
+  });
+
+  const nowDate = new Date();
+  store.startTimeSession(taskId, nowDate);
+}
+
+watch(currentTimerState, async (prev, curr) => {
+  if (prev != curr) {
+    loadTimeSessions();
+  }
+});
 </script>
 
 <style scoped></style>
