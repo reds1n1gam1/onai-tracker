@@ -133,12 +133,12 @@ async function loadTimeSessions() {
 }
 
 async function startTimer(taskId: string) {
-  // const startTimer = await $fetch('/api/time-sessions/start', {
-  //   method: "POST",
-  //   body :{
-  //     taskId,
-  //   }
-  // })
+  const startTimer = await $fetch("/api/time-sessions/start", {
+    method: "POST",
+    body: {
+      taskId,
+    },
+  });
 
   const nowDate = new Date();
   store.startTimeSession(taskId, nowDate);

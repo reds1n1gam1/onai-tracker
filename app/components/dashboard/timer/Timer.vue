@@ -9,11 +9,13 @@
         <p class="text-center text-7xl text-blue-500 font-semibold">
           {{ secondsToDate(elapsedTime) || "00:00:00" }}
         </p>
-        <p
+        <div
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
         >
-          HRS MINS SECS
-        </p>
+          <p>HRS</p>
+          <p>MINS</p>
+          <p>SECS</p>
+        </div>
       </div>
     </div>
 
@@ -34,7 +36,7 @@
     <div class="grid grid-cols-3 gap-6">
       <ControlButton :type="TimerButtonStates.PLAY" />
       <ControlButton :type="TimerButtonStates.PAUSE" />
-      <ControlButton :type="TimerButtonStates.STOP" />
+      <ControlButton @click="stopTimer" :type="TimerButtonStates.STOP" />
     </div>
   </div>
 </template>
@@ -43,16 +45,18 @@
 import { useTimerStore } from "~/store/useTimerStore.js";
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
+import { useIntervalFn } from "@vueuse/core";
 
 const store = useTimerStore();
 
 const currentTimerState = ref("");
+const timerPause: Ref<Function | undefined> = ref();
 const taskStartedAt: Ref<Date | undefined> = ref();
 
 const elapsedTime: Ref<number> = ref(0);
 
-onMounted(() => {
-  setInterval(() => {
+function startTimer() {
+  const { pause } = useIntervalFn(() => {
     currentTimerState.value = store.getCurrentState;
     taskStartedAt.value = store.getStartedAt;
 
@@ -63,7 +67,25 @@ onMounted(() => {
         (nowDate.getTime() - taskStartedAt.value.getTime()) / 1000;
     }
   }, 1000);
+
+  timerPause.value = pause;
+}
+
+onMounted(() => {
+  startTimer();
 });
+
+watch(currentTimerState, async (prev, curr) => {
+  if (curr === "pause") {
+    if (timerPause.value) {
+      timerPause.value();
+    }
+  }
+});
+
+async function stopTimer() {
+  await store.stopActiveSession();
+}
 </script>
 
 <style scoped></style>

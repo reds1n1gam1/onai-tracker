@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 export const useTimerStore = defineStore("timer", {
   state: () => ({
+    timeSessionId: "",
     currentState: "not_started",
     taskId: "",
     startedAt: new Date(),
@@ -25,7 +26,25 @@ export const useTimerStore = defineStore("timer", {
         this.currentState = "running";
         this.taskId = activeSession.taskId;
         this.startedAt = new Date(activeSession.startedAt);
+        this.timeSessionId = activeSession.id;
       }
+    },
+    async stopActiveSession() {
+      const updatedSession = await $fetch("/api/time-sessions/stop", {
+        method: "POST",
+        body: {
+          timeSessionId: this.timeSessionId,
+        },
+      });
+
+      if (updatedSession) {
+        this.clearTimeSession();
+      }
+    },
+    clearTimeSession() {
+      this.currentState = "not_started";
+      this.startedAt = new Date();
+      this.taskId = "";
     },
   },
 });

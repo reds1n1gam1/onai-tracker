@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   const projects = await prisma.timeSession.create({
     data: {
-      userId: userSession.id,
+      userId: userSession.user.id,
       taskId,
       status: "running",
     },
