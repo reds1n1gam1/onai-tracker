@@ -7,7 +7,9 @@
         <p class="text-lg font-semibold">Today tasks list</p>
         <p class="text-base text-gray-500">
           Total tracked time:
-          <span class="text-blue-500 font-semibold">06:20:00</span>
+          <span class="text-blue-500 font-semibold">{{
+            secondsToDate(totalTrackedTime)
+          }}</span>
         </p>
       </div>
       <Button size="lg" variant="secondary">View all tasks</Button>
@@ -117,6 +119,12 @@ import { useTimerStore } from "~/store/useTimerStore";
 const store = useTimerStore();
 
 const timeSessions: Ref<TimeSession[]> = ref([]);
+
+const totalTrackedTime = computed(() => {
+  return timeSessions.value.reduce((acc, curr) => {
+    return acc + curr.durationSeconds;
+  }, 0);
+});
 
 onMounted(() => {
   updatedTimeSessions();
