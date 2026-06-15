@@ -67,6 +67,9 @@ import {
   SelectItem,
   SelectLabel,
 } from "../ui/select/index.js";
+import { useTimerStore } from "~/store/useTimerStore.js";
+
+const store = useTimerStore();
 
 const projects: Ref<Project[]> = ref([]);
 const priorities: Ref<Priority[]> = ref(Object.values(Priority));
@@ -91,12 +94,13 @@ async function loadProjects() {
 
 async function addTask() {
   try {
-    await $fetch("/api/tasks/create", {
+    const task = await $fetch("/api/tasks/create", {
       method: "POST",
       body: form,
     });
 
     clearForm(form);
+    await store.startTimeSession(task.id);
   } catch {
     toast.error("Invalid data");
   }

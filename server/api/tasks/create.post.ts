@@ -12,16 +12,16 @@ export default defineEventHandler(async (event) => {
     bodySchema.parse,
   );
 
-  const session = await requireUserSession(event);
+  const userSession = await requireUserSession(event);
 
   const task = await prisma.task.create({
     data: {
       title,
       projectId: project,
-      userId: session.user.id,
-      // priority: formatPriority(priority)
+      userId: userSession.user.id,
+      priority: formatPriority(priority),
     },
   });
 
-  return true;
+  return task;
 });

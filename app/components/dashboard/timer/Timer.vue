@@ -76,7 +76,7 @@ onMounted(() => {
 
 watch(
   () => store.currentState,
-  async (curr, prev) => {
+  async (curr) => {
     currentTimerState.value = store.getCurrentState;
 
     if (curr === "pause" && timerPause.value) {
