@@ -138,11 +138,14 @@ async function startTimer(taskId: string) {
   await store.startTimeSession(taskId);
 }
 
-watch(currentTimerState, async (prev, curr) => {
-  if (prev != curr) {
-    loadTimeSessions();
-  }
-});
+watch(
+  () => store.currentState,
+  async (curr, prev) => {
+    if (prev !== curr) {
+      loadTimeSessions();
+    }
+  },
+);
 </script>
 
 <style scoped></style>

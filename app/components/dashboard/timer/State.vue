@@ -12,7 +12,7 @@
     </template>
     <template v-else-if="state.toLowerCase() === TimerState.NOT_STARTED">
       <IconClockStop />
-      <p>Timer is paused</p>
+      <p>Timer is not started</p>
     </template>
   </div>
 </template>

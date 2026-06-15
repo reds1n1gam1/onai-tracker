@@ -12,10 +12,18 @@ export const useTimerStore = defineStore("timer", {
     getStartedAt: (state) => state.startedAt,
   },
   actions: {
-    startTimeSession(taskId: string, startedAt: Date) {
+    async startTimeSession(taskId: string) {
+      const newTimeSession = await $fetch("/api/time-sessions/start", {
+        method: "POST",
+        body: {
+          taskId,
+        },
+      });
+
       this.currentState = "running";
       this.taskId = taskId;
-      this.startedAt = startedAt;
+      this.startedAt = new Date(newTimeSession.startedAt);
+      this.timeSessionId = newTimeSession.id;
     },
     async fetchActiveSession() {
       const activeSession = await $fetch("/api/time-sessions/active", {
@@ -23,6 +31,8 @@ export const useTimerStore = defineStore("timer", {
       });
 
       if (activeSession && activeSession.status === "running") {
+        console.log("inside condition");
+
         this.currentState = "running";
         this.taskId = activeSession.taskId;
         this.startedAt = new Date(activeSession.startedAt);

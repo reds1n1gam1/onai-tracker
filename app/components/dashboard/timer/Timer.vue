@@ -49,7 +49,7 @@ import { useIntervalFn } from "@vueuse/core";
 
 const store = useTimerStore();
 
-const currentTimerState = ref("");
+const currentTimerState = ref("not_started");
 const timerPause: Ref<Function | undefined> = ref();
 const taskStartedAt: Ref<Date | undefined> = ref();
 
@@ -57,14 +57,15 @@ const elapsedTime: Ref<number> = ref(0);
 
 function startTimer() {
   const { pause } = useIntervalFn(() => {
-    currentTimerState.value = store.getCurrentState;
-    taskStartedAt.value = store.getStartedAt;
+    console.log("currentTimerState.value", currentTimerState.value);
 
-    if (taskStartedAt.value) {
-      const nowDate = new Date();
+    if (currentTimerState.value === "running") {
+      if (taskStartedAt.value) {
+        const nowDate = new Date();
 
-      elapsedTime.value =
-        (nowDate.getTime() - taskStartedAt.value.getTime()) / 1000;
+        elapsedTime.value =
+          (nowDate.getTime() - taskStartedAt.value.getTime()) / 1000;
+      }
     }
   }, 1000);
 
@@ -75,16 +76,24 @@ onMounted(() => {
   startTimer();
 });
 
-watch(currentTimerState, async (prev, curr) => {
-  if (curr === "pause") {
-    if (timerPause.value) {
+watch(
+  () => store.currentState,
+  async (curr, prev) => {
+    console.log("time state chan ges from ", prev, "to", curr);
+    currentTimerState.value = store.getCurrentState;
+
+    if (curr === "pause" && timerPause.value) {
       timerPause.value();
+    } else if (curr === "running") {
+      taskStartedAt.value = store.getStartedAt;
     }
-  }
-});
+  },
+);
 
 async function stopTimer() {
   await store.stopActiveSession();
+
+  elapsedTime.value = 0;
 }
 </script>
 
