@@ -49,7 +49,7 @@ import { useIntervalFn } from "@vueuse/core";
 
 const store = useTimerStore();
 
-const currentTimerState = ref("");
+const currentTimerState: Ref<TimerState> = ref(TimerState.NOT_STARTED);
 const timerPause: Ref<Function | undefined> = ref();
 const taskStartedAt: Ref<Date | undefined> = ref();
 
@@ -76,7 +76,7 @@ onMounted(() => {
 });
 
 watch(currentTimerState, async (prev, curr) => {
-  if (curr === "pause") {
+  if (curr === TimerState.PAUSED) {
     if (timerPause.value) {
       timerPause.value();
     }

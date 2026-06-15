@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
       status: "running",
     },
     include: {
+      user: true,
       task: {
         include: {
           project: true,

@@ -1,14 +1,10 @@
-export const enum TimeSessionStatus {
-  running,
-  paused,
-  completed,
-}
+import type { TimerState } from "./timer-state";
 
-export type TimeSession = {
+export interface TimeSession {
   id: string;
   userId: string;
   taskId: string;
-  status: TimeSessionStatus;
+  status: TimerState;
   startedAt: Date;
   pausedAt?: Date;
   endedAt?: Date;
@@ -17,4 +13,4 @@ export type TimeSession = {
   task: Task;
   createdAt: Date;
   updatedAt: Date;
-};
+}

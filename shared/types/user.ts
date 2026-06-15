@@ -15,7 +15,7 @@ export interface User {
   githubId?: string;
   googleId?: string;
 
-  projects: Project[];
-  tasks: Task[];
-  timeSessions: TimeSession[];
+  projects?: Project[];
+  tasks?: Task[];
+  timeSessions?: TimeSession[];
 }
