@@ -9,17 +9,13 @@ export default defineEventHandler(async (event) => {
 
   const userSession = await requireUserSession(event);
 
-  const newTimeSession = await prisma.timeSession.create({
+  const session = await prisma.timeSession.create({
     data: {
       userId: userSession.user.id,
       taskId,
       status: "running",
     },
-    include: {
-      user: true,
-      task: true,
-    },
   });
 
-  return newTimeSession;
+  return session;
 });
