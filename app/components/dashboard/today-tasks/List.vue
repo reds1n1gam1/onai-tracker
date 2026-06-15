@@ -65,7 +65,9 @@
                     <MenubarSeparator />
                     <MenubarItem>Edit</MenubarItem>
                     <MenubarSeparator />
-                    <MenubarItem>Remove</MenubarItem>
+                    <MenubarItem @click="removeTimeSession(session.id)"
+                      >Remove</MenubarItem
+                    >
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
@@ -117,10 +119,10 @@ const store = useTimerStore();
 const timeSessions: Ref<TimeSession[]> = ref([]);
 
 onMounted(() => {
-  loadTimeSessions();
+  updatedTimeSessions();
 });
 
-async function loadTimeSessions() {
+async function updatedTimeSessions() {
   try {
     const sessions: TimeSession[] = await $fetch("/api/time-sessions/", {
       method: "GET",
@@ -133,14 +135,38 @@ async function loadTimeSessions() {
 }
 
 async function startTimer(taskId: string) {
-  await store.startTimeSession(taskId);
+  try {
+    await store.startTimeSession(taskId);
+    toast.success("Time session started");
+  } catch {
+    toast.error("Time session start error");
+  }
+}
+
+async function removeTimeSession(sessionId: string) {
+  try {
+    const removedLine = await $fetch("/api/time-sessions/remove", {
+      method: "POST",
+      body: {
+        sessionId,
+      },
+    });
+
+    if (removedLine) {
+      toast.success("Time session removed");
+    }
+
+    updatedTimeSessions();
+  } catch {
+    toast.error("Error on server. Time session was not removed");
+  }
 }
 
 watch(
   () => store.currentState,
   async (curr, prev) => {
     if (prev !== curr) {
-      loadTimeSessions();
+      updatedTimeSessions();
     }
   },
 );
