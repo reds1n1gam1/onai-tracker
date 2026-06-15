@@ -16,5 +16,9 @@ export default defineEventHandler(async (event) => {
     },
   });
 
+  if (!activeSession) {
+    return undefined;
+  }
+
   return activeSession;
 });

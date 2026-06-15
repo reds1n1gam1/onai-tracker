@@ -40,10 +40,16 @@ export const useTimerStore = defineStore("timer", {
       }
     },
     async stopActiveSession() {
+      const nowDate = new Date();
+
+      const durationSeconds =
+        (nowDate.getTime() - this.startedAt.getTime()) / 1000;
+
       const updatedSession = await $fetch("/api/time-sessions/stop", {
         method: "POST",
         body: {
           timeSessionId: this.timeSessionId,
+          durationSeconds,
         },
       });
 

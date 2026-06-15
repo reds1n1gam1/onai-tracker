@@ -114,8 +114,6 @@ import { useTimerStore } from "~/store/useTimerStore";
 
 const store = useTimerStore();
 
-const currentTimerState = ref(store.currentState);
-
 const timeSessions: Ref<TimeSession[]> = ref([]);
 
 onMounted(() => {
