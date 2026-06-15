@@ -13,8 +13,8 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 - [x] Projects
 - [x] Tasks
 - [x] Settings
-- [ ] Priority scoring
 - [ ] Focus timer
+- [ ] Priority scoring
 
 # Nuxt Minimal Starter
 

@@ -196,7 +196,7 @@ async function main() {
       {
         userId: user.id,
         taskId: task3.id,
-        status: "running",
+        status: "paused",
         startedAt: new Date("2026-06-10T10:45:00.000Z"),
         durationSeconds: 3000,
       },

@@ -7,7 +7,9 @@
         <p class="text-lg font-semibold">Today tasks list</p>
         <p class="text-base text-gray-500">
           Total tracked time:
-          <span class="text-blue-500 font-semibold">06:20:00</span>
+          <span class="text-blue-500 font-semibold">{{
+            secondsToDate(totalTrackedTime)
+          }}</span>
         </p>
       </div>
       <Button size="lg" variant="secondary">View all tasks</Button>
@@ -34,11 +36,23 @@
               {{ session.task.title }}
             </TableCell>
             <TableCell>{{ session.task.project?.name }}</TableCell>
-            <TableCell>{{ session.task.priority }}</TableCell>
+            <TableCell>
+              <Priority :priority="session.task.priority" />
+            </TableCell>
             <TableCell>
               {{ session.status }}
             </TableCell>
-            <TableCell> {{ session.durationSeconds }} </TableCell>
+            <TableCell>
+              <div class="flex flex-row justify-start items-center gap-2">
+                <p>{{ secondsToDate(session.durationSeconds) }}</p>
+
+                <div
+                  @click="startTimer(session.taskId)"
+                  class="rounded-full p-2 bg-blue-200 text-blue-600"
+                >
+                  <IconPlayerPlay />
+                </div></div
+            ></TableCell>
             <TableCell>
               <Menubar>
                 <MenubarMenu>
@@ -53,7 +67,9 @@
                     <MenubarSeparator />
                     <MenubarItem>Edit</MenubarItem>
                     <MenubarSeparator />
-                    <MenubarItem>Remove</MenubarItem>
+                    <MenubarItem @click="removeTimeSession(session.id)"
+                      >Remove</MenubarItem
+                    >
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
@@ -96,18 +112,27 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "~/components/ui/menubar";
-import { IconDotsVertical } from "@tabler/icons-vue";
+import { IconDotsVertical, IconPlayerPlay } from "@tabler/icons-vue";
 import { toast } from "vue-sonner";
+import { useTimerStore } from "~/store/useTimerStore";
+
+const store = useTimerStore();
 
 const timeSessions: Ref<TimeSession[]> = ref([]);
 
-onMounted(() => {
-  loadTimeSessions();
+const totalTrackedTime = computed(() => {
+  return timeSessions.value.reduce((acc, curr) => {
+    return acc + curr.durationSeconds;
+  }, 0);
 });
 
-async function loadTimeSessions() {
+onMounted(() => {
+  updatedTimeSessions();
+});
+
+async function updatedTimeSessions() {
   try {
-    const sessions: TimeSession[] = await $fetch("/api/time-sessions/active", {
+    const sessions: TimeSession[] = await $fetch("/api/time-sessions/", {
       method: "GET",
     });
 
@@ -116,6 +141,43 @@ async function loadTimeSessions() {
     toast.error("Load error");
   }
 }
+
+async function startTimer(taskId: string) {
+  try {
+    await store.startTimeSession(taskId);
+    toast.success("Time session started");
+  } catch {
+    toast.error("Time session start error");
+  }
+}
+
+async function removeTimeSession(sessionId: string) {
+  try {
+    const removedLine = await $fetch("/api/time-sessions/remove", {
+      method: "POST",
+      body: {
+        sessionId,
+      },
+    });
+
+    if (removedLine) {
+      toast.success("Time session removed");
+    }
+
+    updatedTimeSessions();
+  } catch {
+    toast.error("Error on server. Time session was not removed");
+  }
+}
+
+watch(
+  () => store.currentState,
+  async (curr, prev) => {
+    if (prev !== curr) {
+      updatedTimeSessions();
+    }
+  },
+);
 </script>
 
 <style scoped></style>

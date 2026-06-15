@@ -2,9 +2,7 @@
 
 <template>
   <div class="flex w-full">
-    <div>
-      <app-sidebar />
-    </div>
+    <app-sidebar class="flex-shrink-0" />
 
     <div class="flex-1 bg-gray-100">
       <app-header />

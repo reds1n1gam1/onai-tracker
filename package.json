@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@lucide/vue": "^1.16.0",
+    "@pinia/nuxt": "^0.11.3",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@tabler/icons-vue": "^3.44.0",
@@ -26,6 +27,7 @@
     "nuxt": "^4.4.6",
     "nuxt-auth-utils": "^0.5.29",
     "pg": "^8.21.0",
+    "pinia": "^3.0.4",
     "reka-ui": "^2.9.9",
     "shadcn-nuxt": "^2.7.3",
     "tailwind-merge": "^3.6.0",
