@@ -23,7 +23,5 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  console.log(task);
-
   return true;
 });

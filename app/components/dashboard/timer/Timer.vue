@@ -57,8 +57,6 @@ const elapsedTime: Ref<number> = ref(0);
 
 function startTimer() {
   const { pause } = useIntervalFn(() => {
-    console.log("currentTimerState.value", currentTimerState.value);
-
     if (currentTimerState.value === "running") {
       if (taskStartedAt.value) {
         const nowDate = new Date();
@@ -79,7 +77,6 @@ onMounted(() => {
 watch(
   () => store.currentState,
   async (curr, prev) => {
-    console.log("time state chan ges from ", prev, "to", curr);
     currentTimerState.value = store.getCurrentState;
 
     if (curr === "pause" && timerPause.value) {

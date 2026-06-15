@@ -31,8 +31,6 @@ export const useTimerStore = defineStore("timer", {
       });
 
       if (activeSession && activeSession.status === "running") {
-        console.log("inside condition");
-
         this.currentState = "running";
         this.taskId = activeSession.taskId;
         this.startedAt = new Date(activeSession.startedAt);

@@ -90,8 +90,6 @@ async function loadProjects() {
 }
 
 async function addTask() {
-  console.log(form);
-
   try {
     await $fetch("/api/tasks/create", {
       method: "POST",
