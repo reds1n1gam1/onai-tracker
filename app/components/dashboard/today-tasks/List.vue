@@ -109,7 +109,6 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "~/components/ui/menubar";
 import { IconDotsVertical, IconPlayerPlay } from "@tabler/icons-vue";
