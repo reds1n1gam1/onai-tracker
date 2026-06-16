@@ -10,18 +10,37 @@
           Make changes to your profile here. Click save when you're done.
         </SheetDescription>
       </SheetHeader>
-      <div class="grid flex-1 auto-rows-min gap-6 px-4">
+      <form
+        @submit.prevent="createNewProject"
+        class="grid flex-1 auto-rows-min gap-6 px-4"
+      >
         <div class="grid gap-3">
-          <Label for="sheet-demo-name">Name</Label>
-          <Input id="sheet-demo-name" default-value="Pedro Duarte" />
+          <Label for="sheet-project-name">Name</Label>
+          <Input
+            v-model="projectForm.name"
+            id="sheet-project-name"
+            default-value="Test project"
+          />
         </div>
         <div class="grid gap-3">
-          <Label for="sheet-demo-username">Username</Label>
-          <Input id="sheet-demo-username" default-value="@peduarte" />
+          <Label for="sheet-project-color">Color</Label>
+          <Input
+            v-model="projectForm.color"
+            id="sheet-project-color"
+            default-value="Blue"
+          />
         </div>
-      </div>
+        <div class="grid gap-3">
+          <Label for="sheet-project-description">Description</Label>
+          <Input
+            v-model="projectForm.description"
+            id="sheet-project-description"
+            default-value="Some project description"
+          />
+        </div>
+      </form>
       <SheetFooter>
-        <Button type="submit"> Save changes </Button>
+        <Button @click="createNewProject"> Save changes </Button>
         <SheetClose as-child>
           <Button variant="outline"> Close </Button>
         </SheetClose>
@@ -38,8 +57,33 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetFooter,
+  SheetClose,
 } from "~/components/ui/sheet";
 import Button from "../ui/button/Button.vue";
+import { toast } from "vue-sonner";
+
+const projectForm = reactive({
+  name: "",
+  color: "",
+  description: "",
+});
+
+async function createNewProject() {
+  try {
+    const project = await $fetch("/api/projects/create", {
+      method: "POST",
+      body: projectForm,
+    });
+
+    if (project) {
+      clearForm(projectForm);
+      toast.error("New Project information added");
+    }
+  } catch {
+    toast.error("Invalid data");
+  }
+}
 </script>
 
 <style scoped></style>
