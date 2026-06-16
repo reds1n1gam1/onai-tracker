@@ -6,7 +6,7 @@
         >Organize your work and focus on what matters most</template
       >
       <template v-slot:actions>
-        <Button size="lg">Add task</Button>
+        <TasksCreate />
       </template>
     </WidgetsTitleBlock>
 
@@ -69,13 +69,13 @@
             <TableCell>
               <Status :status="task.status" />
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base">
               {{ toDate(task.dueDate as unknown as string) }}
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base text-gray-500">
               {{ task.estimatedMinutes }}
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base text-gray-500">
               {{ secondsToDate(task.trackedSeconds) }}
             </TableCell>
             <!-- <TableCell class="text-base font-semibold">
@@ -91,8 +91,6 @@
                     <MenubarItem>
                       View details <MenubarShortcut>⌘T</MenubarShortcut>
                     </MenubarItem>
-                    <MenubarItem>Open</MenubarItem>
-                    <MenubarSeparator />
                     <MenubarItem>Edit</MenubarItem>
                     <MenubarSeparator />
                     <MenubarItem @click="removeTask(task.id)"

@@ -61,11 +61,7 @@
                       <IconDotsVertical />
                     </MenubarTrigger>
                     <MenubarContent>
-                      <MenubarItem>
-                        View details <MenubarShortcut>⌘T</MenubarShortcut>
-                      </MenubarItem>
                       <MenubarItem>Open</MenubarItem>
-                      <MenubarSeparator />
                       <MenubarItem>Edit</MenubarItem>
                       <MenubarSeparator />
                       <MenubarItem @click="removeTimeSession(session.id)"

@@ -7,7 +7,7 @@
         where your time is being spent.</template
       >
       <template v-slot:actions>
-        <Button size="lg">Add project</Button>
+        <ProjectsCreate />
       </template>
     </WidgetsTitleBlock>
 
@@ -63,10 +63,10 @@
             <p class="text-base font-semibold">{{ project.name }}</p>
             <p class="text-sm text-gray-500">{{ project.description }}</p>
           </TableCell>
-          <TableCell class="font-semibold text-base">{{
+          <TableCell class="text-gray-500 text-base">{{
             secondsToDate(getTotalSpendTime(project.tasks))
           }}</TableCell>
-          <TableCell class="font-semibold text-base">{{
+          <TableCell class="text-gray-500 text-base">{{
             project.tasks.length
           }}</TableCell>
           <TableCell>
@@ -79,8 +79,6 @@
                   <MenubarItem>
                     View details <MenubarShortcut>⌘T</MenubarShortcut>
                   </MenubarItem>
-                  <MenubarItem>Open</MenubarItem>
-                  <MenubarSeparator />
                   <MenubarItem>Edit</MenubarItem>
                   <MenubarSeparator />
                   <MenubarItem @click="removeProject(project.id)"

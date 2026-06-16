@@ -1,7 +1,7 @@
 <template>
   <Sheet>
     <SheetTrigger as-child>
-      <Button variant="outline"> Open </Button>
+      <Button size="lg"> Add task </Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
