@@ -1,17 +1,30 @@
 <template>
-  <div
-    class="status capitalize rounded-md p-1 text-center text-xs"
-    :class="{
-      'bg-gray-200 text-gray-900': status === TaskStatus.TODO,
-      'bg-blue-200 text-blue-900': status === TaskStatus.IN_PROGRESS,
-      'bg-green-200 text-green-900': status === TaskStatus.DONE,
-    }"
-  >
-    {{ status }}
+  <div>
+    <Badge class="capitalize" v-if="status === TaskStatus.TODO">{{
+      status
+    }}</Badge>
+
+    <Badge
+      class="capitalize"
+      v-if="status === TaskStatus.IN_PROGRESS"
+      variant="destructive"
+    >
+      {{ status }}
+    </Badge>
+
+    <Badge
+      class="capitalize"
+      v-if="status === TaskStatus.DONE"
+      variant="secondary"
+    >
+      {{ status }}
+    </Badge>
   </div>
 </template>
 
 <script setup lang="ts">
+import Badge from "./ui/badge/Badge.vue";
+
 defineProps<{ status?: string }>();
 </script>
 

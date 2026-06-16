@@ -1,17 +1,30 @@
 <template>
-  <div
-    class="status capitalize rounded-md p-1 text-center text-xs"
-    :class="{
-      'bg-gray-200 text-gray-900': status === TimerState.COMPLETED,
-      'bg-blue-200 text-blue-900': status === TimerState.RUNNING,
-      'bg-green-200 text-green-900': status === TimerState.PAUSED,
-    }"
-  >
-    {{ status }}
+  <div>
+    <Badge class="capitalize" v-if="status === TimerState.COMPLETED">{{
+      status
+    }}</Badge>
+
+    <Badge
+      class="capitalize"
+      v-if="status === TimerState.RUNNING"
+      variant="destructive"
+    >
+      {{ status }}
+    </Badge>
+
+    <Badge
+      class="capitalize"
+      v-if="status === TimerState.PAUSED"
+      variant="secondary"
+    >
+      {{ status }}
+    </Badge>
   </div>
 </template>
 
 <script setup lang="ts">
+import Badge from "~/components/ui/badge/Badge.vue";
+
 defineProps<{ status?: string }>();
 </script>
 
