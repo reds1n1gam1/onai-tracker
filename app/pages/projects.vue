@@ -7,7 +7,7 @@
         where your time is being spent.</template
       >
       <template v-slot:actions>
-        <ProjectsCreate />
+        <ProjectsCreate @new-project-added="loadProjects" />
       </template>
     </WidgetsTitleBlock>
 

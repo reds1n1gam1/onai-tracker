@@ -63,6 +63,10 @@ import {
 import Button from "../ui/button/Button.vue";
 import { toast } from "vue-sonner";
 
+const emit = defineEmits<{
+  newProjectAdded: [];
+}>();
+
 const projectForm = reactive({
   name: "",
   color: "",
@@ -79,6 +83,7 @@ async function createNewProject() {
     if (project) {
       clearForm(projectForm);
       toast.error("New Project information added");
+      emit("newProjectAdded");
     }
   } catch {
     toast.error("Invalid data");
