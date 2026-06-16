@@ -83,7 +83,9 @@
                   <MenubarSeparator />
                   <MenubarItem>Edit</MenubarItem>
                   <MenubarSeparator />
-                  <MenubarItem>Remove</MenubarItem>
+                  <MenubarItem @click="removeProject(project.id)"
+                    >Remove</MenubarItem
+                  >
                 </MenubarContent>
               </MenubarMenu>
             </Menubar>
@@ -184,6 +186,24 @@ async function loadProjects() {
     projects.value = fetchedProjects;
   } catch {
     toast.error("Load error");
+  }
+}
+
+async function removeProject(projectId: string) {
+  try {
+    const removedLine = await $fetch("/api/projects/remove", {
+      method: "POST",
+      body: {
+        projectId,
+      },
+    });
+
+    if (removedLine) {
+      await loadProjects();
+      toast.success("Project was removed");
+    }
+  } catch {
+    toast.error("Error on server. Project was not removed");
   }
 }
 
