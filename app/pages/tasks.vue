@@ -6,7 +6,7 @@
         >Organize your work and focus on what matters most</template
       >
       <template v-slot:actions>
-        <TasksCreate />
+        <TasksCreate @new-task-added="updateTasks" />
       </template>
     </WidgetsTitleBlock>
 
@@ -145,11 +145,18 @@ import {
 } from "~/components/ui/menubar";
 
 import { IconDotsVertical, IconList } from "@tabler/icons-vue";
-import Button from "~/components/ui/button/Button.vue";
 import { useTasksStore } from "~/store/useTaskStore";
 import { toast } from "vue-sonner";
 
 const store = useTasksStore();
+
+async function updateTasks() {
+  try {
+    await store.fetchAllTasks();
+  } catch {
+    toast.error("Server error");
+  }
+}
 
 async function removeTask(taskId: string) {
   try {

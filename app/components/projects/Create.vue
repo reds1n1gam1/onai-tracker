@@ -5,9 +5,9 @@
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Edit profile</SheetTitle>
+        <SheetTitle>Add New Project</SheetTitle>
         <SheetDescription>
-          Make changes to your profile here. Click save when you're done.
+          Create a new project to organize your work
         </SheetDescription>
       </SheetHeader>
       <form
