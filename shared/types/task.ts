@@ -5,7 +5,7 @@ export enum Priority {
   CRITICAL = "critical",
 }
 
-export const enum TaskStatus {
+export enum TaskStatus {
   TODO = "todo",
   IN_PROGRESS = "in_progress",
   PAUSED = "paused",

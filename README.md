@@ -13,8 +13,12 @@ Users add tasks, set priority, deadline, and estimated time, and the app recomme
 - [x] Projects
 - [x] Tasks
 - [x] Settings
-- [ ] Focus timer
-- [ ] Priority scoring
+- [x] Focus timer
+- [x] Priority scoring
+
+```txt
+type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
+```
 
 # Nuxt Minimal Starter
 
@@ -153,8 +157,4 @@ src/
     lib/
     api/
 
-```
-
-```txt
-type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
 ```

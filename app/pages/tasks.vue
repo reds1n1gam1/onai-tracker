@@ -6,7 +6,7 @@
         >Organize your work and focus on what matters most</template
       >
       <template v-slot:actions>
-        <Button size="lg">Add task</Button>
+        <TasksCreate @new-task-added="updateTasks" />
       </template>
     </WidgetsTitleBlock>
 
@@ -69,13 +69,13 @@
             <TableCell>
               <Status :status="task.status" />
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base">
               {{ toDate(task.dueDate as unknown as string) }}
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base text-gray-500">
               {{ task.estimatedMinutes }}
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <TableCell class="text-base text-gray-500">
               {{ secondsToDate(task.trackedSeconds) }}
             </TableCell>
             <!-- <TableCell class="text-base font-semibold">
@@ -91,11 +91,11 @@
                     <MenubarItem>
                       View details <MenubarShortcut>⌘T</MenubarShortcut>
                     </MenubarItem>
-                    <MenubarItem>Open</MenubarItem>
-                    <MenubarSeparator />
                     <MenubarItem>Edit</MenubarItem>
                     <MenubarSeparator />
-                    <MenubarItem>Remove</MenubarItem>
+                    <MenubarItem @click="removeTask(task.id)"
+                      >Remove</MenubarItem
+                    >
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
@@ -145,10 +145,36 @@ import {
 } from "~/components/ui/menubar";
 
 import { IconDotsVertical, IconList } from "@tabler/icons-vue";
-import Button from "~/components/ui/button/Button.vue";
 import { useTasksStore } from "~/store/useTaskStore";
+import { toast } from "vue-sonner";
 
 const store = useTasksStore();
+
+async function updateTasks() {
+  try {
+    await store.fetchAllTasks();
+  } catch {
+    toast.error("Server error");
+  }
+}
+
+async function removeTask(taskId: string) {
+  try {
+    const removedLine = await $fetch("/api/tasks/remove", {
+      method: "POST",
+      body: {
+        taskId,
+      },
+    });
+
+    if (removedLine) {
+      toast.success("Task was removed");
+      await store.fetchAllTasks();
+    }
+  } catch {
+    toast.error("Error on server. Task was not removed");
+  }
+}
 </script>
 
 <style scoped></style>
