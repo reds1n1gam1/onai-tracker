@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 grid gap-4"
+    class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 grid gap-4 content-start"
   >
     <div class="flex flex-row justify-between">
       <p class="text-lg font-semibold">Recommended task</p>
@@ -14,31 +14,46 @@
         <IconClipboardData size="24" />
       </div>
 
-      <p class="text-xl font-bold">{{ task.title }}</p>
+      <template v-if="tasksStore.getMostPriorityTask">
+        <p class="text-xl font-bold">
+          {{ tasksStore.getMostPriorityTask.title }}
+        </p>
 
-      <div class="flex flex-row items-center justify-start gap-2">
-        <div
-          class="bg-red-200 rounded-md px-2 py-1 text-red-500 font-medium text-sm capitalize"
-        >
-          {{ task.priority }}
+        <div class="flex flex-row items-center justify-start gap-2">
+          <div
+            class="bg-red-200 rounded-md px-2 py-1 text-red-500 font-medium text-sm capitalize"
+          >
+            {{ tasksStore.getMostPriorityTask.priority }}
+          </div>
+          <div
+            class="bg-blue-200 rounded-md px-2 py-1 text-blue-500 font-medium text-sm capitalize"
+          >
+            {{ tasksStore.getMostPriorityTask.status }}
+          </div>
         </div>
-        <div
-          class="bg-blue-200 rounded-md px-2 py-1 text-blue-500 font-medium text-sm capitalize"
-        >
-          {{ task.project }}
+
+        <p class="text-base text-gray-700">
+          {{ tasksStore.getMostPriorityTask.shortDescription }}
+        </p>
+
+        <div class="flex flex-col gap-4 w-full">
+          <Button
+            size="lg"
+            class="text-lg"
+            @click="startTimer(tasksStore.getMostPriorityTask.id)"
+            >Start task</Button
+          >
+          <Button
+            size="lg"
+            class="text-lg border-2 border-gray-300"
+            variant="secondary"
+            >View task details</Button
+          >
         </div>
-      </div>
+      </template>
 
-      <p class="text-base text-gray-700">{{ task.shortDescription }}</p>
-
-      <div class="flex flex-col gap-4 w-full">
-        <Button size="lg" class="text-lg">Start task</Button>
-        <Button
-          size="lg"
-          class="text-lg border-2 border-gray-300"
-          variant="secondary"
-          >View task details</Button
-        >
+      <div v-else>
+        <p>Data is loading</p>
       </div>
     </div>
   </div>
@@ -46,20 +61,21 @@
 
 <script setup lang="ts">
 import { IconSparklesFilled, IconClipboardData } from "@tabler/icons-vue";
+import { toast } from "vue-sonner";
+import { useTasksStore } from "~/store/useTaskStore";
+import { useTimerStore } from "~/store/useTimerStore";
 
-interface Props {
-  task: Task;
+const tasksStore = useTasksStore();
+const timerStore = useTimerStore();
+
+async function startTimer(taskId: string) {
+  try {
+    await timerStore.startTimeSession(taskId);
+    toast.success("Time session started");
+  } catch {
+    toast.error("Time session start error");
+  }
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  task: () => ({
-    title: "Prepare sprint planning desk",
-    priority: Priority.LOW,
-    project: "Tracker",
-    shortDescription:
-      "High priority task with upcoming deadline. Estimated time 1h 30m",
-  }),
-});
 </script>
 
 <style scoped></style>

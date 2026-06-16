@@ -1,14 +1,16 @@
 export enum Priority {
-  CRITICAL = "critical",
-  HIGH = "high",
-  MEDIUM = "medium",
   LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+  CRITICAL = "critical",
 }
 
 export const enum TaskStatus {
   TODO = "todo",
   IN_PROGRESS = "in_progress",
+  PAUSED = "paused",
   DONE = "done",
+  CANCELED = "canceled",
 }
 
 export interface Task {

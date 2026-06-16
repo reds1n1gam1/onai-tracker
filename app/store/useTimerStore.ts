@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
+import { useTasksStore } from "./useTaskStore";
 
 export const useTimerStore = defineStore("timer", {
   state: () => ({
     timeSessionId: "",
     currentState: "not_started",
     taskId: "",
+    taskTitle: "",
+    taskDescription: "",
     startedAt: new Date(),
   }),
   getters: {
@@ -13,6 +16,8 @@ export const useTimerStore = defineStore("timer", {
   },
   actions: {
     async startTimeSession(taskId: string) {
+      const tasks = useTasksStore();
+
       const newTimeSession = await $fetch("/api/time-sessions/start", {
         method: "POST",
         body: {
@@ -21,20 +26,30 @@ export const useTimerStore = defineStore("timer", {
       });
 
       this.currentState = "running";
-      this.taskId = taskId;
       this.startedAt = new Date(newTimeSession.startedAt);
       this.timeSessionId = newTimeSession.id;
+
+      this.taskId = newTimeSession.taskId;
+      this.taskTitle = tasks.getTaskById(newTimeSession.taskId)?.title || "";
+      this.taskDescription =
+        tasks.getTaskById(newTimeSession.taskId)?.shortDescription || "";
     },
     async fetchActiveSession() {
+      const tasks = useTasksStore();
+
       const activeSession = await $fetch("/api/time-sessions/active", {
         method: "GET",
       });
 
       if (activeSession && activeSession.status === "running") {
         this.currentState = "running";
-        this.taskId = activeSession.taskId;
         this.startedAt = new Date(activeSession.startedAt);
         this.timeSessionId = activeSession.id;
+
+        this.taskId = activeSession.taskId;
+        this.taskTitle = tasks.getTaskById(activeSession.taskId)?.title || "";
+        this.taskDescription =
+          tasks.getTaskById(activeSession.taskId)?.shortDescription || "";
       }
     },
     async stopActiveSession() {
@@ -59,6 +74,8 @@ export const useTimerStore = defineStore("timer", {
       this.currentState = "not_started";
       this.startedAt = new Date();
       this.taskId = "";
+      this.taskTitle = "";
+      this.taskDescription = "";
     },
   },
 });

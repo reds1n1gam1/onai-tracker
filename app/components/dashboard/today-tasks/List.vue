@@ -30,51 +30,53 @@
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow v-for="(session, index) in timeSessions" :key="index">
-            <TableCell></TableCell>
-            <TableCell class="font-medium">
-              {{ session.task.title }}
-            </TableCell>
-            <TableCell>{{ session.task.project?.name }}</TableCell>
-            <TableCell>
-              <Priority :priority="session.task.priority" />
-            </TableCell>
-            <TableCell>
-              {{ session.status }}
-            </TableCell>
-            <TableCell>
-              <div class="flex flex-row justify-start items-center gap-2">
-                <p>{{ secondsToDate(session.durationSeconds) }}</p>
+          <TransitionGroup name="list">
+            <TableRow v-for="(session, index) in timeSessions" :key="index">
+              <TableCell></TableCell>
+              <TableCell class="font-medium">
+                {{ session.task.title }}
+              </TableCell>
+              <TableCell>{{ session.task.project?.name }}</TableCell>
+              <TableCell>
+                <Priority :priority="session.task.priority" />
+              </TableCell>
+              <TableCell>
+                <SessionStatus :status="session.status" />
+              </TableCell>
+              <TableCell>
+                <div class="flex flex-row justify-start items-center gap-2">
+                  <p>{{ secondsToDate(session.durationSeconds) }}</p>
 
-                <div
-                  @click="startTimer(session.taskId)"
-                  class="rounded-full p-2 bg-blue-200 text-blue-600"
-                >
-                  <IconPlayerPlay />
-                </div></div
-            ></TableCell>
-            <TableCell>
-              <Menubar>
-                <MenubarMenu>
-                  <MenubarTrigger>
-                    <IconDotsVertical />
-                  </MenubarTrigger>
-                  <MenubarContent>
-                    <MenubarItem>
-                      View details <MenubarShortcut>⌘T</MenubarShortcut>
-                    </MenubarItem>
-                    <MenubarItem>Open</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Edit</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem @click="removeTimeSession(session.id)"
-                      >Remove</MenubarItem
-                    >
-                  </MenubarContent>
-                </MenubarMenu>
-              </Menubar>
-            </TableCell>
-          </TableRow>
+                  <div
+                    @click="startTimer(session.taskId)"
+                    class="rounded-full p-2 bg-blue-200 text-blue-600"
+                  >
+                    <IconPlayerPlay />
+                  </div></div
+              ></TableCell>
+              <TableCell>
+                <Menubar>
+                  <MenubarMenu>
+                    <MenubarTrigger>
+                      <IconDotsVertical />
+                    </MenubarTrigger>
+                    <MenubarContent>
+                      <MenubarItem>
+                        View details <MenubarShortcut>⌘T</MenubarShortcut>
+                      </MenubarItem>
+                      <MenubarItem>Open</MenubarItem>
+                      <MenubarSeparator />
+                      <MenubarItem>Edit</MenubarItem>
+                      <MenubarSeparator />
+                      <MenubarItem @click="removeTimeSession(session.id)"
+                        >Remove</MenubarItem
+                      >
+                    </MenubarContent>
+                  </MenubarMenu>
+                </Menubar>
+              </TableCell>
+            </TableRow>
+          </TransitionGroup>
         </TableBody>
         <TableFooter>
           <TableRow>
@@ -83,7 +85,9 @@
               Showing 6 of {{ timeSessions.length }}
             </TableCell>
             <TableCell colspan="1"> Total </TableCell>
-            <TableCell colspan="1"> 06:20:00 </TableCell>
+            <TableCell colspan="1">
+              {{ secondsToDate(totalTrackedTime) }}
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>
@@ -115,6 +119,7 @@ import {
 import { IconDotsVertical, IconPlayerPlay } from "@tabler/icons-vue";
 import { toast } from "vue-sonner";
 import { useTimerStore } from "~/store/useTimerStore";
+import SessionStatus from "./SessionStatus.vue";
 
 const store = useTimerStore();
 
@@ -180,4 +185,14 @@ watch(
 );
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>

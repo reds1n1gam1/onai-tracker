@@ -14,7 +14,7 @@
       <StatItem color="gray">
         <template v-slot:icon><IconList /></template>
         <template v-slot:title>All Tasks</template>
-        <template v-slot:value>{{ tasks.length }}</template>
+        <template v-slot:value>{{ store.tasks.length }}</template>
       </StatItem>
     </div>
 
@@ -57,7 +57,7 @@
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow v-for="(task, index) in tasks" :key="index">
+          <TableRow v-for="(task, index) in store.tasks" :key="index">
             <TableCell class="font-medium"> </TableCell>
             <TableCell>
               <p class="text-base font-semibold">{{ task.title }}</p>
@@ -78,9 +78,9 @@
             <TableCell class="text-base font-semibold">
               {{ secondsToDate(task.trackedSeconds) }}
             </TableCell>
-            <TableCell class="text-base font-semibold">
+            <!-- <TableCell class="text-base font-semibold">
               {{ task.project?.name }}
-            </TableCell>
+            </TableCell> -->
             <TableCell>
               <Menubar>
                 <MenubarMenu>
@@ -104,7 +104,9 @@
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colspan="9"> Showing 6 of {{ tasks.length }} </TableCell>
+            <TableCell colspan="9">
+              Showing 6 of {{ store.tasks.length }}
+            </TableCell>
           </TableRow>
         </TableFooter>
       </Table>
@@ -142,27 +144,11 @@ import {
   MenubarTrigger,
 } from "~/components/ui/menubar";
 
-import { toast } from "vue-sonner";
 import { IconDotsVertical, IconList } from "@tabler/icons-vue";
 import Button from "~/components/ui/button/Button.vue";
+import { useTasksStore } from "~/store/useTaskStore";
 
-const tasks: Ref<Task[]> = ref([]);
-
-onMounted(() => {
-  loadTasks();
-});
-
-async function loadTasks() {
-  try {
-    const fetchedTasks: Task[] = await $fetch("/api/tasks/", {
-      method: "GET",
-    });
-
-    tasks.value = fetchedTasks;
-  } catch {
-    toast.error("Load error");
-  }
-}
+const store = useTasksStore();
 </script>
 
 <style scoped></style>

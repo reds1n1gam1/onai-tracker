@@ -19,15 +19,15 @@
       </div>
     </div>
 
-    <div class="info">
+    <div class="info flex flex-col justify-start items-center">
       <p class="text-center text-xl font-semibold text-gray-700">
-        Design system updates
+        {{ store.taskTitle || "Title" }}
       </p>
 
-      <div class="flex flex-row gap-1 text-lg text-gray-400">
-        <p>Product design project</p>
-        <p>/</p>
-        <p>Hell hot</p>
+      <div class="flex flex-row gap-1 text-lg text-gray-400 text-center">
+        <p>{{ store.taskDescription || "Description" }}</p>
+        <!-- <p>/</p>
+        <p>Hell hot</p> -->
       </div>
     </div>
 

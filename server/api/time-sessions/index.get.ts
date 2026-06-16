@@ -4,6 +4,9 @@ export default defineEventHandler(async (event) => {
   const timeSessions = await prisma.timeSession.findMany({
     where: {
       userId: session.user.id,
+      NOT: {
+        status: "running",
+      },
     },
     orderBy: {
       updatedAt: "desc",
