@@ -1,18 +1,37 @@
 <template>
-  <div
-    class="status capitalize rounded-md p-1 text-center text-xs"
-    :class="{
-      'bg-green-200 text-green-900': priority === Priority.LOW,
-      'bg-yellow-200 text-yellow-900': priority === Priority.MEDIUM,
-      'bg-orange-200 text-orange-900': priority === Priority.HIGH,
-      'bg-red-200 text-red-900': priority === Priority.CRITICAL,
-    }"
-  >
-    {{ priority }}
+  <div>
+    <Badge
+      class="capitalize"
+      v-if="priority === Priority.LOW"
+      variant="outline"
+      >{{ priority }}</Badge
+    >
+
+    <Badge
+      class="capitalize"
+      v-if="priority === Priority.MEDIUM"
+      variant="secondary"
+    >
+      {{ priority }}
+    </Badge>
+
+    <Badge
+      class="capitalize"
+      v-if="priority === Priority.CRITICAL"
+      variant="destructive"
+    >
+      {{ priority }}
+    </Badge>
+
+    <Badge class="capitalize" v-if="priority === Priority.HIGH">
+      {{ priority }}
+    </Badge>
   </div>
 </template>
 
 <script setup lang="ts">
+import Badge from "./ui/badge/Badge.vue";
+
 defineProps<{ priority?: string }>();
 </script>
 
