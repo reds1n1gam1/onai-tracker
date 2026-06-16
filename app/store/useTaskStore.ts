@@ -74,6 +74,9 @@ export const useTasksStore = defineStore("tasks", {
   state: () => ({ tasks: [] as StoreTask[] }),
   getters: {
     getTasks: (state) => state.tasks,
+    getTaskById: (state) => {
+      return (taskId: string) => state.tasks.find((task) => task.id === taskId);
+    },
     getMostPriorityTask: (state) => {
       let mostCriticalTask: StoreTask | undefined = undefined;
 
