@@ -61,10 +61,36 @@ function taskStatusFormatter(prismaTaskStatus: string): TaskStatus {
   return TaskStatus.TODO;
 }
 
+function filterByPriority(
+  tasks: StoreTask[],
+  priority: Priority,
+): StoreTask | undefined {
+  return tasks.filter((task) => {
+    return task.priority === priority;
+  })[0];
+}
+
 export const useTasksStore = defineStore("tasks", {
   state: () => ({ tasks: [] as StoreTask[] }),
   getters: {
     getTasks: (state) => state.tasks,
+    getMostPriorityTask: (state) => {
+      let mostCriticalTask: StoreTask | undefined = undefined;
+
+      Object.values(Priority)
+        .reverse()
+        .forEach((priority) => {
+          if (!mostCriticalTask) {
+            const resultTask = filterByPriority(state.tasks, priority);
+
+            if (resultTask) {
+              mostCriticalTask = resultTask;
+            }
+          }
+        });
+
+      return mostCriticalTask;
+    },
   },
   actions: {
     async fetchAllTasks() {
@@ -73,8 +99,6 @@ export const useTasksStore = defineStore("tasks", {
       });
 
       this.tasks = primsmaToStoreMapper(allTasks);
-
-      console.log(this.tasks);
     },
   },
 });
