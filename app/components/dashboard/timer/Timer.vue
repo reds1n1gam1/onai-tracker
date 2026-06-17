@@ -2,12 +2,18 @@
   <div
     class="bg-white rounded-md p-4 shadow-md border-1 border-gray-200 flex flex-col justify-start items-center gap-4"
   >
-    <State :state="currentTimerState" />
+    <State :state="store.currentState" />
 
     <div class="flex flex-row justify-center items-start">
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">
-          {{ secondsToDate(elapsedTime) || "00:00:00" }}
+        <p
+          class="text-center text-7xl font-semibold"
+          :class="{
+            'text-blue-500': store.currentState == 'running',
+            'text-gray-500': store.currentState !== 'running',
+          }"
+        >
+          {{ secondsToDate(store.getElapsedTime) || "00:00:00" }}
         </p>
         <div
           class="flex flex-row justify-between items-center gap-22 font-medium text-gray-400"
@@ -45,52 +51,11 @@
 import { useTimerStore } from "~/store/useTimerStore.js";
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
-import { useIntervalFn } from "@vueuse/core";
 
 const store = useTimerStore();
 
-const currentTimerState = ref("not_started");
-const timerPause: Ref<Function | undefined> = ref();
-const taskStartedAt: Ref<Date | undefined> = ref();
-
-const elapsedTime: Ref<number> = ref(0);
-
-function startTimer() {
-  const { pause } = useIntervalFn(() => {
-    if (currentTimerState.value === "running") {
-      if (taskStartedAt.value) {
-        const nowDate = new Date();
-
-        elapsedTime.value =
-          (nowDate.getTime() - taskStartedAt.value.getTime()) / 1000;
-      }
-    }
-  }, 1000);
-
-  timerPause.value = pause;
-}
-
-onMounted(() => {
-  startTimer();
-});
-
-watch(
-  () => store.currentState,
-  async (curr) => {
-    currentTimerState.value = store.getCurrentState;
-
-    if (curr === "pause" && timerPause.value) {
-      timerPause.value();
-    } else if (curr === "running") {
-      taskStartedAt.value = store.getStartedAt;
-    }
-  },
-);
-
 async function stopTimer() {
   await store.stopActiveSession();
-
-  elapsedTime.value = 0;
 }
 </script>
 
