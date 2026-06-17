@@ -9,10 +9,12 @@ export const useTimerStore = defineStore("timer", {
     taskTitle: "",
     taskDescription: "",
     startedAt: new Date(),
+    elapsedTimeInS: 0,
   }),
   getters: {
     getCurrentState: (state) => state.currentState,
     getStartedAt: (state) => state.startedAt,
+    getElapsedTime: (state) => state.elapsedTimeInS,
   },
   actions: {
     async startTimeSession(taskId: string) {
@@ -70,12 +72,16 @@ export const useTimerStore = defineStore("timer", {
         this.clearTimeSession();
       }
     },
+    setElapsedTimeInSeconds(elapsedTime: number) {
+      this.elapsedTimeInS = elapsedTime;
+    },
     clearTimeSession() {
       this.currentState = "not_started";
       this.startedAt = new Date();
       this.taskId = "";
       this.taskTitle = "";
       this.taskDescription = "";
+      this.elapsedTimeInS = 0;
     },
   },
 });
