@@ -6,7 +6,13 @@
 
     <div class="flex flex-row justify-center items-start">
       <div class="flex flex-col justify-start items-center w-20">
-        <p class="text-center text-7xl text-blue-500 font-semibold">
+        <p
+          class="text-center text-7xl font-semibold"
+          :class="{
+            'text-blue-500': store.currentState === 'running',
+            'text-gray-500': store.currentState !== 'paused',
+          }"
+        >
           {{ secondsToDate(elapsedTime) || "00:00:00" }}
         </p>
         <div
