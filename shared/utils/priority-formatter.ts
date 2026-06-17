@@ -1,4 +1,5 @@
 import { Priority, TaskStatus } from "../types/task";
+import { TimerState } from "../types/timer-state";
 
 export const formatPriority = (priority: string): Priority | undefined => {
   if (priority === Priority.CRITICAL) {
@@ -16,7 +17,7 @@ export const formatPriority = (priority: string): Priority | undefined => {
   return Priority.LOW;
 };
 
-export const formatStatus = (status?: string): TaskStatus | undefined => {
+export const formatStatus = (status?: string): TaskStatus => {
   if (status === TaskStatus.CANCELED) {
     return TaskStatus.CANCELED;
   }
@@ -34,4 +35,16 @@ export const formatStatus = (status?: string): TaskStatus | undefined => {
   }
 
   return TaskStatus.TODO;
+};
+
+export const formatTimeSessionStatus = (status?: string): TimerState => {
+  if (status === TimerState.COMPLETED) {
+    return TimerState.COMPLETED;
+  }
+
+  if (status === TimerState.RUNNING) {
+    return TimerState.RUNNING;
+  }
+
+  return TimerState.PAUSED;
 };

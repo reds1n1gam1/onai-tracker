@@ -10,11 +10,12 @@ export const useTimerStore = defineStore("timer", {
     taskDescription: "",
     startedAt: new Date(),
     elapsedTimeInS: 0,
+    elapsedTimeBuffer: 0,
   }),
   getters: {
     getCurrentState: (state) => state.currentState,
     getStartedAt: (state) => state.startedAt,
-    getElapsedTime: (state) => state.elapsedTimeInS,
+    getElapsedTime: (state) => state.elapsedTimeInS + state.elapsedTimeBuffer,
   },
   actions: {
     async startTimeSession(taskId: string) {
@@ -72,8 +73,47 @@ export const useTimerStore = defineStore("timer", {
         this.clearTimeSession();
       }
     },
+    async pauseActiveSession() {
+      const nowDate = new Date();
+
+      const durationSeconds =
+        (nowDate.getTime() - this.startedAt.getTime()) / 1000;
+
+      const updatedSession = await $fetch("/api/time-sessions/pause", {
+        method: "POST",
+        body: {
+          timeSessionId: this.timeSessionId,
+          durationSeconds,
+        },
+      });
+
+      if (updatedSession) {
+        this.updateTimeSession();
+      }
+    },
+    async resumeActiveSession() {
+      const updatedSession = await $fetch("/api/time-sessions/resume", {
+        method: "POST",
+        body: {
+          timeSessionId: this.timeSessionId,
+        },
+      });
+
+      if (updatedSession) {
+        this.currentState = "running";
+        this.startedAt = new Date();
+
+        if (updatedSession.pausedAt) {
+          this.elapsedTimeBuffer += updatedSession.durationSeconds;
+        }
+      }
+    },
     setElapsedTimeInSeconds(elapsedTime: number) {
       this.elapsedTimeInS = elapsedTime;
+    },
+    updateTimeSession() {
+      this.currentState = "paused";
+      this.startedAt = new Date();
     },
     clearTimeSession() {
       this.currentState = "not_started";
@@ -82,6 +122,7 @@ export const useTimerStore = defineStore("timer", {
       this.taskTitle = "";
       this.taskDescription = "";
       this.elapsedTimeInS = 0;
+      this.elapsedTimeBuffer = 0;
     },
   },
 });

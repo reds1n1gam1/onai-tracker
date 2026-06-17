@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
       userId: session.user.id,
     },
     data: {
-      status: "completed",
-      endedAt: new Date(),
+      status: "paused",
+      pausedAt: new Date(),
       durationSeconds,
     },
   });
