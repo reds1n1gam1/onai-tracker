@@ -72,8 +72,30 @@ export const useTimerStore = defineStore("timer", {
         this.clearTimeSession();
       }
     },
+    async pauseActiveSession() {
+      const nowDate = new Date();
+
+      const durationSeconds =
+        (nowDate.getTime() - this.startedAt.getTime()) / 1000;
+
+      const updatedSession = await $fetch("/api/time-sessions/stop", {
+        method: "POST",
+        body: {
+          timeSessionId: this.timeSessionId,
+          durationSeconds,
+        },
+      });
+
+      if (updatedSession) {
+        this.updateTimeSession();
+      }
+    },
     setElapsedTimeInSeconds(elapsedTime: number) {
       this.elapsedTimeInS = elapsedTime;
+    },
+    updateTimeSession() {
+      this.currentState = "paused";
+      this.startedAt = new Date();
     },
     clearTimeSession() {
       this.currentState = "not_started";
