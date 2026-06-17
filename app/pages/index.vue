@@ -1,6 +1,6 @@
 <template>
+  <MainBanner />
   <div class="container mx-auto px-4">
-    <MainBanner class="my-12" />
     <Features class="my-12" />
     <HowItWorks class="my-12" />
     <SpecialBanner class="my-12" />

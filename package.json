@@ -25,6 +25,8 @@
     "@vueuse/core": "^14.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-vue": "^8.6.0",
     "nuxt": "^4.4.6",
     "nuxt-auth-utils": "^0.5.29",
     "pg": "^8.21.0",
