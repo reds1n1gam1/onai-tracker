@@ -40,7 +40,7 @@
     <hr class="w-6/12" />
 
     <div class="grid grid-cols-3 gap-6">
-      <ControlButton :type="TimerButtonStates.PLAY" />
+      <ControlButton @click="resumeTimer" :type="TimerButtonStates.PLAY" />
       <ControlButton @click="pauseTimer" :type="TimerButtonStates.PAUSE" />
       <ControlButton @click="stopTimer" :type="TimerButtonStates.STOP" />
     </div>
@@ -60,6 +60,10 @@ async function stopTimer() {
 
 async function pauseTimer() {
   await store.pauseActiveSession();
+}
+
+async function resumeTimer() {
+  await store.resumeActiveSession();
 }
 </script>
 

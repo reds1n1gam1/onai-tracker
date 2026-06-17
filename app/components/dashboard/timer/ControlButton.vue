@@ -32,7 +32,7 @@ defineProps<{
 const buttonsData: Ref<Map<TimerButtonStates, ButtonData>> = ref(new Map());
 
 buttonsData.value.set(TimerButtonStates.PLAY, {
-  text: "Play",
+  text: "Resume",
   icon: IconPlayerPlayFilled,
 });
 buttonsData.value.set(TimerButtonStates.PAUSE, {
