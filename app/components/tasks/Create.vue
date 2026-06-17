@@ -20,7 +20,7 @@
               <SelectGroup>
                 <SelectLabel>Project</SelectLabel>
                 <SelectItem
-                  v-for="(project, index) in projects"
+                  v-for="(project, index) in projectsStore.getProjects"
                   :key="index"
                   :value="project.id"
                 >
@@ -175,12 +175,14 @@ import {
   CalendarDate,
 } from "@internationalized/date";
 import type { DateValue } from "reka-ui";
+import { useProjectsStore } from "~/store/useProjectStore.js";
 
 const emit = defineEmits<{
   newTaskAdded: [];
 }>();
 
-const projects: Ref<Project[]> = ref([]);
+const projectsStore = useProjectsStore();
+
 const priorities: Ref<Priority[]> = ref(Object.values(Priority));
 const statusList: Ref<TaskStatus[]> = ref(Object.values(TaskStatus));
 const date = ref() as Ref<DateValue>;
@@ -197,18 +199,6 @@ const taskForm = reactive({
   estimatedMinutes: 0,
   dueDate: undefined as DateValue | undefined,
 });
-
-async function loadProjects() {
-  try {
-    const fetchedProjects: Project[] = await $fetch("/api/projects", {
-      method: "GET",
-    });
-
-    projects.value = fetchedProjects;
-  } catch {
-    toast.error("Load error");
-  }
-}
 
 async function createNewTask() {
   try {
@@ -231,10 +221,6 @@ async function createNewTask() {
     toast.error("Invalid data");
   }
 }
-
-onMounted(() => {
-  loadProjects();
-});
 </script>
 
 <style scoped></style>

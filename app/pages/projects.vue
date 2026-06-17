@@ -7,7 +7,7 @@
         where your time is being spent.</template
       >
       <template v-slot:actions>
-        <ProjectsCreate @new-project-added="loadProjects" />
+        <ProjectsCreate @new-project-added="projectsStore.fetchAllProjects()" />
       </template>
     </WidgetsTitleBlock>
 
@@ -58,7 +58,10 @@
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="(project, index) in projects" :key="index">
+        <TableRow
+          v-for="(project, index) in projectsStore.getProjects"
+          :key="index"
+        >
           <TableCell class="flex flex-col justify-center items-start">
             <p class="text-base font-semibold">{{ project.name }}</p>
             <p class="text-sm text-gray-500">{{ project.description }}</p>
@@ -139,24 +142,25 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "~/components/ui/menubar";
+import { useProjectsStore } from "~/store/useProjectStore";
 
-const projects: Ref<Project[]> = ref([]);
+const projectsStore = useProjectsStore();
 
 const totalProjects = computed(() => {
-  if (!projects) {
+  if (!projectsStore.getProjects) {
     return;
   }
 
-  return projects.value.length;
+  return projectsStore.getProjects.length;
 });
 
 const totalTime = computed(() => {
-  if (!projects) {
+  if (!projectsStore.getProjects) {
     return;
   }
 
   let sumOfTime = 0;
-  projects.value.forEach((project) => {
+  projectsStore.getProjects.forEach((project) => {
     const tasks = project.tasks;
 
     if (tasks) {
@@ -175,18 +179,6 @@ function getTotalSpendTime(tasks: Task[]): number {
   }, 0);
 }
 
-async function loadProjects() {
-  try {
-    const fetchedProjects: Project[] = await $fetch("/api/projects", {
-      method: "GET",
-    });
-
-    projects.value = fetchedProjects;
-  } catch {
-    toast.error("Load error");
-  }
-}
-
 async function removeProject(projectId: string) {
   try {
     const removedLine = await $fetch("/api/projects/remove", {
@@ -197,17 +189,13 @@ async function removeProject(projectId: string) {
     });
 
     if (removedLine) {
-      await loadProjects();
+      await projectsStore.fetchAllProjects();
       toast.success("Project was removed");
     }
   } catch {
     toast.error("Error on server. Project was not removed");
   }
 }
-
-onMounted(() => {
-  loadProjects();
-});
 </script>
 
 <style scoped></style>

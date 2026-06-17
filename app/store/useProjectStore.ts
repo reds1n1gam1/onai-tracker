@@ -4,8 +4,12 @@ export const useProjectsStore = defineStore("projects", {
     getProjects: (state) => state.projects,
   },
   actions: {
-    storeTasks(projects: Project[]) {
-      this.projects = projects;
+    async fetchAllProjects() {
+      const allProjects: Project[] = await $fetch("/api/projects", {
+        method: "GET",
+      });
+
+      this.projects = allProjects;
     },
   },
 });

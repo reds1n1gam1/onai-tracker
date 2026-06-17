@@ -40,7 +40,7 @@
           <SelectGroup>
             <SelectLabel>Project</SelectLabel>
             <SelectItem
-              v-for="(project, index) in projects"
+              v-for="(project, index) in projectsStore.getProjects"
               :key="index"
               :value="project.id"
             >
@@ -68,10 +68,11 @@ import {
   SelectLabel,
 } from "../ui/select/index.js";
 import { useTimerStore } from "~/store/useTimerStore.js";
+import { useProjectsStore } from "~/store/useProjectStore.js";
 
-const store = useTimerStore();
+const timerStore = useTimerStore();
+const projectsStore = useProjectsStore();
 
-const projects: Ref<Project[]> = ref([]);
 const priorities: Ref<Priority[]> = ref(Object.values(Priority));
 
 const form = reactive({
@@ -79,18 +80,6 @@ const form = reactive({
   priority: "",
   project: "",
 });
-
-async function loadProjects() {
-  try {
-    const userProjects: Project[] = await $fetch("/api/projects/", {
-      method: "GET",
-    });
-
-    projects.value = userProjects;
-  } catch {
-    toast.error("Load error");
-  }
-}
 
 async function addTask() {
   try {
@@ -100,15 +89,11 @@ async function addTask() {
     });
 
     clearForm(form);
-    await store.startTimeSession(task.id);
+    await timerStore.startTimeSession(task.id);
   } catch {
     toast.error("Invalid data");
   }
 }
-
-onMounted(() => {
-  loadProjects();
-});
 </script>
 
 <style scoped></style>

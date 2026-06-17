@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { useIntervalFn } from "@vueuse/core";
+import { useProjectsStore } from "~/store/useProjectStore";
 import { useTasksStore } from "~/store/useTaskStore";
 import { useTimerStore } from "~/store/useTimerStore";
 
@@ -11,6 +12,7 @@ const clearIntervalFn: Ref<Function | undefined> = ref();
 
 const timerStore = useTimerStore();
 const tasksStore = useTasksStore();
+const projectsStore = useProjectsStore();
 
 const { loggedIn } = useUserSession();
 
@@ -22,6 +24,7 @@ onMounted(async () => {
   await Promise.all([
     timerStore.fetchActiveSession(),
     tasksStore.fetchAllTasks(),
+    projectsStore.fetchAllProjects(),
   ]);
 });
 
