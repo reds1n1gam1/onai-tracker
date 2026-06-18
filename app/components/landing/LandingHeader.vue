@@ -73,7 +73,6 @@ function openRegistration() {
 
 <style lang="scss" scoped>
 .header {
-  --ot-logo-width: 280px;
   --ot-logo-height: 70px;
 
   &__logotype {
