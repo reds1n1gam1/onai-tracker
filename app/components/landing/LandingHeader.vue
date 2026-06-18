@@ -20,7 +20,7 @@
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-              <a class="text-lg" href="#pricing">Pricing</a>
+              <a class="text-lg" href="#banner">Join</a>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>

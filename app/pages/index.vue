@@ -1,13 +1,13 @@
 <template>
   <MainBanner />
   <div class="container mx-auto px-4">
-    <Features class="my-12" />
+    <Features id="features" class="my-12" />
   </div>
-  <LandingBanner />
+  <LandingBanner id="banner" />
   <div class="container mx-auto px-4">
-    <HowItWorks class="my-12" />
+    <HowItWorks id="how-it-works" class="my-12" />
     <SpecialBanner class="my-12" />
-    <FAQ class="my-12" />
+    <FAQ id="faq" class="my-12" />
   </div>
 </template>
 
