@@ -3,7 +3,9 @@
     class="sidebar flex flex-col justify-between items-start py-6 px-8 border-r-2 border-gray-200"
   >
     <div class="sidebar__top">
-      <img class="w-48" src="/logo.png" alt="" />
+      <a href="/">
+        <img class="w-48" src="/logo.png" alt="" />
+      </a>
 
       <nav class="mt-6">
         <ul class="grid gap-2">
