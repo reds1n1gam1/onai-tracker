@@ -71,7 +71,7 @@ function openRegistration() {
 .banner {
   background-image:
     linear-gradient(to right, #f6f8fd 41%, transparent 70%),
-    url("special-banner.jpg");
+    url("/special-banner.jpg");
   background-size:
     cover,
     auto 140%;
