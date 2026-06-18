@@ -51,19 +51,32 @@
 import { useTimerStore } from "~/store/useTimerStore.js";
 import ControlButton from "./ControlButton.vue";
 import State from "./State.vue";
+import { toast } from "vue-sonner";
 
 const store = useTimerStore();
 
 async function stopTimer() {
-  await store.stopActiveSession();
+  try {
+    await store.stopActiveSession();
+  } catch {
+    toast.error("No active time sessions to stop");
+  }
 }
 
 async function pauseTimer() {
-  await store.pauseActiveSession();
+  try {
+    await store.pauseActiveSession();
+  } catch {
+    toast.error("No active time sessions to pause");
+  }
 }
 
 async function resumeTimer() {
-  await store.resumeActiveSession();
+  try {
+    await store.resumeActiveSession();
+  } catch {
+    toast.error("No active time sessions to resume");
+  }
 }
 </script>
 
