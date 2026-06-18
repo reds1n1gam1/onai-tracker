@@ -96,6 +96,12 @@
         >
           <IconLinkFilled class="text-blue-500" size="16" />Terms of Service
         </a>
+        <a
+          class="text-lg text-gray-600 flex flex-row gap-2 items-center"
+          href="/help"
+        >
+          <IconLinkFilled class="text-blue-500" size="16" />Help
+        </a>
       </nav>
     </div>
     <hr />

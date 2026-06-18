@@ -91,6 +91,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  layout: "empty",
+});
+</script>
 
 <style scoped></style>
