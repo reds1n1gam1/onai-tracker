@@ -4,7 +4,9 @@
       class="header container mx-auto px-4 flex flex-row gap-4 justify-between px-10 items-center"
     >
       <div class="header__logo">
-        <img class="header__logotype" src="/logo.png" alt="" />
+        <a href="/">
+          <img class="header__logotype" src="/logo.png" alt="" />
+        </a>
       </div>
 
       <div class="header__auth grid gap-5 grid-cols-2">

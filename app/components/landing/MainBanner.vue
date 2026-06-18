@@ -224,19 +224,19 @@ function openRegistration() {
   &--1 {
     background-image:
       linear-gradient(to right, #f6f8fd 54%, transparent 80%),
-      url("banner-1.jpg");
+      url("/banner-1.jpg");
   }
 
   &--2 {
     background-image:
       linear-gradient(to right, #f6f8fd 54%, transparent 80%),
-      url("banner-2.jpg");
+      url("/banner-2.jpg");
   }
 
   &--3 {
     background-image:
       linear-gradient(to right, #f6f8fd 54%, transparent 80%),
-      url("banner-3.jpg");
+      url("/banner-3.jpg");
   }
 }
 </style>

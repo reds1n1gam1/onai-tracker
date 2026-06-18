@@ -3,7 +3,9 @@
     class="header container mx-auto px-4 grid gap-4 grid-cols-3 px-10 items-center"
   >
     <div class="header__logo">
-      <img class="header__logotype" src="/logo.png" alt="" />
+      <a href="/">
+        <img class="header__logotype" src="/logo.png" alt="" />
+      </a>
     </div>
     <nav class="header__navigation">
       <NavigationMenu :viewport="false">
