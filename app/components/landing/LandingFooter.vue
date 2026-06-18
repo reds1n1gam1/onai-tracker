@@ -56,27 +56,21 @@
         <p class="font-bold text-2xl">App</p>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/dasboard"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Dashboard
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/tasks"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Tasks
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/projects"
         >
-          <IconLinkFilled class="text-blue-500" size="16" />Time
-        </a>
-        <a
-          class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
-        >
-          <IconLinkFilled class="text-blue-500" size="16" />Reports
+          <IconLinkFilled class="text-blue-500" size="16" />Projects
         </a>
       </nav>
 
@@ -86,19 +80,19 @@
         <p class="font-bold text-2xl">Resources</p>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/contact"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Contact
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/privacy"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Privacy Policy
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="/terms-of-service"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Terms of Service
         </a>
