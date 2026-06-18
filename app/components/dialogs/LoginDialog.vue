@@ -22,45 +22,51 @@
       @submit.prevent="login"
       class="login__form flex flex-col justify-items-stretch gap-4"
     >
-      <div class="grid gap-2">
-        <Label class="text-lg" for="email">Email</Label>
-        <InputGroup class="p-2 h-auto">
-          <InputGroupInput
-            v-model="credentials.email"
-            class="text-lg"
-            id="email"
-            type="email"
-            placeholder="Enter your email"
-          />
-          <InputGroupAddon>
-            <IconMail size="48" stroke="{2}" />
-          </InputGroupAddon>
-        </InputGroup>
-      </div>
+      <FieldGroup>
+        <Field class="grid gap-2">
+          <FieldLabel class="text-lg" for="email">Email</FieldLabel>
+          <InputGroup class="p-2 h-auto">
+            <InputGroupInput
+              v-model="credentials.email"
+              class="text-lg"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+            <InputGroupAddon>
+              <IconMail size="48" stroke="{2}" />
+            </InputGroupAddon>
+          </InputGroup>
+        </Field>
 
-      <div class="grid gap-2">
-        <Label class="text-lg" for="password">Password</Label>
-        <InputGroup class="p-2 h-auto">
-          <InputGroupInput
-            v-model="credentials.password"
-            class="text-lg"
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-          />
-          <InputGroupAddon>
-            <IconLockPassword size="48" />
-          </InputGroupAddon>
-        </InputGroup>
-      </div>
+        <Field class="grid gap-2">
+          <FieldLabel class="text-lg" for="password">Password</FieldLabel>
+          <InputGroup class="p-2 h-auto">
+            <InputGroupInput
+              v-model="credentials.password"
+              class="text-lg"
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              required
+            />
+            <InputGroupAddon>
+              <IconLockPassword size="48" />
+            </InputGroupAddon>
+          </InputGroup>
+        </Field>
 
-      <div class="flex flex-row gap-2 justify-items-start items-center">
-        <Checkbox id="remember-me" />
-        <Label for="remember-me" class="text-base font-normal"
-          >Remember me</Label
-        >
-      </div>
-      <Button type="submit" class="text-lg p-6">Sign in</Button>
+        <Field>
+          <div class="flex flex-row gap-2 justify-items-start items-center">
+            <Checkbox id="remember-me" />
+            <FieldLabel for="remember-me" class="text-base font-normal"
+              >Remember me</FieldLabel
+            >
+          </div>
+        </Field>
+        <Button type="submit" class="text-lg p-6">Sign in</Button>
+      </FieldGroup>
     </form>
 
     <div class="login__signup text-center w-8/12 mx-auto">
@@ -87,9 +93,10 @@ import Checkbox from "../ui/checkbox/Checkbox.vue";
 import { InputGroupInput } from "../ui/input-group/index.js";
 import InputGroup from "../ui/input-group/InputGroup.vue";
 import InputGroupAddon from "../ui/input-group/InputGroupAddon.vue";
-import Label from "../ui/label/Label.vue";
 import SocialButton from "../ui/sso-button/SocialButton.vue";
 import { IconMail, IconLockPassword } from "@tabler/icons-vue";
+
+import { Field, FieldGroup, FieldLabel } from "~/components/ui/field";
 
 const { loggedIn, user, fetch: refreshSession } = useUserSession();
 
