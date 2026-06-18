@@ -1,6 +1,6 @@
 <template>
   <div class="info w-full h-screen p-16">
-    <img class="footer__logotype w-80 mb-12" src="/logo.png" alt="" />
+    <img class="footer__logotype w-80 mb-12" src="/logo-2.png" alt="" />
 
     <div
       class="info__content flex flex-col gap-8 justify-items-start content-start"
