@@ -31,6 +31,8 @@
             id="name"
             type="text"
             placeholder="Enter your name"
+            required
+            maxlength="256"
           />
           <InputGroupAddon>
             <IconUserCircle size="48" stroke="{2}" />
@@ -47,6 +49,8 @@
             id="email"
             type="email"
             placeholder="Enter your email"
+            required
+            maxlength="256"
           />
           <InputGroupAddon>
             <IconMail size="48" stroke="{2}" />
@@ -63,6 +67,9 @@
             id="password"
             type="password"
             placeholder="Enter your password"
+            required
+            minlength="8"
+            maxlength="256"
           />
           <InputGroupAddon>
             <IconLockPassword size="48" />
@@ -79,24 +86,33 @@
             id="confirm-password"
             type="password"
             placeholder="Confirm your password"
+            required
+            minlength="8"
+            maxlength="256"
           />
           <InputGroupAddon>
             <IconLockPassword size="48" />
           </InputGroupAddon>
         </InputGroup>
+        <FieldError v-if="passwordError">Passwords doesn't match</FieldError>
       </div>
 
       <div class="flex flex-row gap-2 justify-items-start items-center">
         <Checkbox v-model="credentials.accept" id="accept" />
         <Label for="accept" class="text-base font-normal"
           >I agree to
-          <a href="" class="text-blue-500 font-semibold">Terms of Service</a>
+          <a href="/terms-of-service" class="text-blue-500 font-semibold"
+            >Terms of Service</a
+          >
           and
-          <a href="" class="text-blue-500 font-semibold"
+          <a href="privacy" class="text-blue-500 font-semibold"
             >Privacy Policy</a
           ></Label
         >
       </div>
+      <FieldError v-if="checkboxError"
+        >You must accept the Terms and Conditions to continue</FieldError
+      >
       <Button type="submit" class="text-lg p-6">Create account</Button>
     </form>
 
@@ -122,6 +138,9 @@ import { IconMail, IconLockPassword, IconUserCircle } from "@tabler/icons-vue";
 
 const { fetch: refreshSession } = useUserSession();
 
+const passwordError = ref(false);
+const checkboxError = ref(false);
+
 const credentials = reactive({
   name: "",
   email: "",
@@ -131,6 +150,11 @@ const credentials = reactive({
 });
 
 async function register() {
+  if (!credentials.accept) {
+    checkboxError.value = true;
+    return;
+  }
+
   try {
     await $fetch("/api/auth/registration", {
       method: "POST",
@@ -143,6 +167,22 @@ async function register() {
     toast.error("Invalid data");
   }
 }
+
+watch(
+  () => credentials.confirmPassword,
+  (curr) => {
+    passwordError.value = credentials.password !== curr;
+  },
+);
+
+watch(
+  () => credentials.password,
+  (curr) => {
+    if (credentials.confirmPassword) {
+      passwordError.value = credentials.confirmPassword !== curr;
+    }
+  },
+);
 </script>
 
 <style scoped></style>
