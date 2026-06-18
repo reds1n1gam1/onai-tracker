@@ -1,5 +1,7 @@
 # Priority Focus Tracker — Task List
 
+![alt text](/public/og-image.jpg)
+
 A small productivity app that helps users decide what to work on next.  
 Users add tasks, set priority, deadline, and estimated time, and the app recommends the next task for a focused work session.
 
