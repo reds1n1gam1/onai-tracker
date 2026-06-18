@@ -29,10 +29,14 @@
 
 <script setup lang="ts">
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
-// const { data: users } = await useFetch('/api/users')
 
 definePageMeta({
   middleware: ["authenticated"],
+});
+
+useSeoMeta({
+  title: "Dashboard | Onai Tracker",
+  description: "Track your tasks and focus sessions.",
 });
 </script>
 
