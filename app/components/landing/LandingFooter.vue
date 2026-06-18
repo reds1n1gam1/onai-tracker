@@ -26,25 +26,25 @@
         <p class="font-bold text-2xl">Product</p>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="#features"
         >
           <IconLinkFilled class="text-blue-500" size="16" />Features
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="#how-it-works"
         >
           <IconLinkFilled class="text-blue-500" size="16" />How it works
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="#banner"
         >
-          <IconLinkFilled class="text-blue-500" size="16" />Pricing
+          <IconLinkFilled class="text-blue-500" size="16" />Join
         </a>
         <a
           class="text-lg text-gray-600 flex flex-row gap-2 items-center"
-          href=""
+          href="#faq"
         >
           <IconLinkFilled class="text-blue-500" size="16" />FAQ
         </a>
