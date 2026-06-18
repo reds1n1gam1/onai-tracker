@@ -1,97 +1,43 @@
 <template>
-  <div>
-    <h1>Help</h1>
+  <div class="container mx-auto text-gray-500 grid gap-6 py-6">
+    <div class="grid gap-4">
+      <h1 class="text-4xl text-black font-semibold">Help</h1>
+      <p class="font-semibold">
+        Find answers, learn how things work, and get the most out of your time.
+      </p>
+    </div>
+    <div
+      class="rounded-md flex flex-row items-center justify-between bg-blue-100 p-4"
+    >
+      <div class="flex flex-row justify-start items-center gap-4">
+        <div
+          class="flex flex-col items-center justify-center w-20 h-20 rounded-full bg-blue-200 text-blue-500"
+        >
+          <IconMail size="36" />
+        </div>
 
-    <p>
-      Find answers, learn how things work, and get the most out of your time.
-    </p>
+        <div>
+          <h2 class="text-lg font-semibold text-black">
+            Questions About Project?
+          </h2>
 
-    <h2>Getting Started</h2>
+          <p>
+            If you have questions regarding these Terms of Service, please
+            contact our support team.
+          </p>
+        </div>
+      </div>
 
-    <h3>Quick Start Guide</h3>
-    <p>
-      Get up and running in minutes. Learn the basics and start tracking your
-      time.
-    </p>
-
-    <h3>Key Concepts</h3>
-    <p>Understand tasks, projects, timers, and how everything fits together.</p>
-
-    <h3>Best Practices</h3>
-    <p>Tips and workflows to help you stay focused and productive every day.</p>
-
-    <h2>Help Topics</h2>
-
-    <h3>Tasks</h3>
-    <p>
-      Create, organize, and track tasks. Set priorities, statuses, and
-      deadlines.
-    </p>
-
-    <h3>Projects</h3>
-    <p>
-      Organize your work into projects and track progress across different
-      goals.
-    </p>
-
-    <h3>Time Tracking</h3>
-    <p>Start timers, add time manually, and monitor how your time is spent.</p>
-
-    <h3>Tags</h3>
-    <p>Use tags to categorize tasks and improve filtering and reporting.</p>
-
-    <h3>Reports</h3>
-    <p>
-      Analyze productivity, review tracked time, and gain insights into your
-      work.
-    </p>
-
-    <h3>Settings &amp; Account</h3>
-    <p>
-      Manage your account, preferences, notifications, and workspace settings.
-    </p>
-
-    <h2>Still Need Help?</h2>
-
-    <p>Can't find what you're looking for?</p>
-
-    <p>Contact our support team and we'll be happy to help.</p>
-
-    <p>
-      <strong>Contact Support</strong>
-    </p>
-
-    <p>We usually respond within 24 hours.</p>
-
-    <h2>Keyboard Shortcuts</h2>
-
-    <p>Speed up your workflow with keyboard shortcuts.</p>
-
-    <ul>
-      <li><strong>Start / Stop Timer:</strong> S</li>
-      <li><strong>Add New Task:</strong> N</li>
-      <li><strong>Search:</strong> /</li>
-      <li><strong>Open Command Menu:</strong> K</li>
-    </ul>
-
-    <p>
-      <strong>View All Shortcuts</strong>
-    </p>
-
-    <h2>New to Time Tracker?</h2>
-
-    <p>
-      Check out our Quick Start Guide and discover how to stay productive from
-      day one.
-    </p>
-
-    <p>
-      <strong>Open Guide</strong>
-    </p>
+      <a href="mailto:madisaginaliyev@gmail.com">
+        <strong>Contact Support</strong>
+      </a>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { IconMail } from "@tabler/icons-vue";
+
 definePageMeta({
   layout: "empty",
 });
