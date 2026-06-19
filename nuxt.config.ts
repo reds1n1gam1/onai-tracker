@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["shadcn-nuxt", "nuxt-auth-utils", "@pinia/nuxt"],
+  modules: ["shadcn-nuxt", "nuxt-auth-utils", "@pinia/nuxt", "@nuxt/scripts"],
   shadcn: {
     /**
      * Prefix for all the imported component.
@@ -31,5 +31,14 @@ export default defineNuxtConfig({
      * @default "@/components/ui"
      */
     componentDir: "@/components/ui",
+  },
+
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: "G-C1LBQ3ET1K",
+        trigger: "onNuxtReady",
+      },
+    },
   },
 });
