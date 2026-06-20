@@ -1,35 +1,31 @@
 <template>
-  <div
-    class="sidebar flex flex-col justify-between items-start py-6 px-8 border-r-2 border-gray-200"
-  >
-    <div class="sidebar__top">
-      <a href="/">
-        <img class="w-48" src="/logo.png" alt="" />
-      </a>
-
-      <nav class="mt-6">
-        <ul class="grid gap-2">
-          <li v-for="item in menuItems" :key="item.title" class="text-gray-500">
-            <RouterLink
-              :to="item.route"
-              activeClass="bg-blue-100 text-blue-500"
-              exactActiveClass="bg-blue-100 text-blue-500"
-              class="text-base font-medium flex flex-row gap-2 p-4 rounded-md items-center hover:bg-blue-100 hover:text-blue-500"
-            >
-              <component :is="item.icon" :size="24" />
-              <p>{{ item.title }}</p>
-            </RouterLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="sidebar__bottom">
-      <button class="flex flex-row gap-2">
-        <IconHelpCircle class="text-gray-400" />
-        <p class="text-normal text-gray-400">Help & Support</p>
-      </button>
-    </div>
-  </div>
+  <Sidebar>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Application</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem v-for="item in menuItems" :key="item.title">
+              <SidebarMenuButton as-child>
+                <a :href="item.url">
+                  <component :is="item.icon" />
+                  <span>{{ item.title }}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+      <SidebarFooter>
+        <SidebarGroup>
+          <button class="flex flex-row gap-2">
+            <IconHelpCircle class="text-gray-400" />
+            <p class="text-normal text-gray-400">Help & Support</p>
+          </button>
+        </SidebarGroup>
+      </SidebarFooter>
+    </SidebarContent>
+  </Sidebar>
 </template>
 
 <script setup lang="ts">
@@ -37,39 +33,48 @@ import type { Icon } from "@tabler/icons-vue";
 import {
   IconLayoutDashboard,
   IconListCheck,
-  IconReportAnalytics,
   IconFolder,
-  IconTag,
   IconSettings,
   IconHelpCircle,
 } from "@tabler/icons-vue";
 
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "~/components/ui/sidebar";
+
 type MenuItem = {
   title: string;
   icon: Icon;
-  route: string;
+  url: string;
 };
 
 const menuItems: Ref<MenuItem[]> = ref([
   {
     title: "Dashboard",
     icon: IconLayoutDashboard,
-    route: "/dashboard",
+    url: "/dashboard",
   },
   {
     title: "Tasks",
     icon: IconListCheck,
-    route: "/tasks",
+    url: "/tasks",
   },
   {
     title: "Projects",
     icon: IconFolder,
-    route: "/projects",
+    url: "/projects",
   },
   {
     title: "Settings",
     icon: IconSettings,
-    route: "/settings",
+    url: "/settings",
   },
 ]);
 </script>
