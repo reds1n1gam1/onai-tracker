@@ -12,7 +12,7 @@
       </p>
     </div>
 
-    <div class="features__list grid grid-cols-4 gap-4 mt-12">
+    <div class="features__list grid lg:grid-cols-4 gap-4 mt-12">
       <LandingFeature
         title="Smart prioritization"
         text="Automatically score tasks based on priority, urgency, effort, and progress, so you always know what deserves your attention first."

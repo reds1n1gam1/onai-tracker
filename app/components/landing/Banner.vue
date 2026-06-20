@@ -19,7 +19,7 @@
           Priority Time Tracker helps you organize tasks, track work sessions,
           and automatically understand what deserves your attention next
         </h2>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col lg:flex-row gap-4">
           <Button
             @click="openRegistration()"
             size="lg"

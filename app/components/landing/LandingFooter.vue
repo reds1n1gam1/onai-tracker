@@ -1,6 +1,6 @@
 <template>
   <div class="footer container mx-auto px-4">
-    <div class="footer__top flex flex-row gap-4 py-6">
+    <div class="footer__top flex flex-col lg:flex-row gap-4 py-6">
       <div class="footer_col flex flex-col gap-4 max-w-md">
         <img class="footer__logotype w-80" src="/logo.png" alt="" />
         <p class="text-lg text-gray-600">
@@ -105,7 +105,9 @@
       </nav>
     </div>
     <hr />
-    <div class="footer__bottom flex justify-between text-gray-600 py-6">
+    <div
+      class="footer__bottom flex flex-col lg:flex-row justify-between text-gray-600 py-6"
+    >
       <p>
         @{{ new Date().getFullYear() }} Onai Time Tracker. All rights reserved
       </p>

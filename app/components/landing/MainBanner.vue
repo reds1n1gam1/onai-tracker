@@ -34,7 +34,7 @@
                   sessions, and automatically understand what deserves your
                   attention next
                 </h2>
-                <div class="flex flex-row gap-4">
+                <div class="flex flex-col lg:flex-row gap-4">
                   <Button
                     @click="openRegistration()"
                     size="lg"
@@ -91,7 +91,7 @@
                   recommend the next best task based on your goals and
                   priorities.
                 </h2>
-                <div class="flex flex-row gap-4">
+                <div class="flex flex-col lg:flex-row gap-4">
                   <Button
                     @click="openRegistration()"
                     size="lg"
@@ -148,7 +148,7 @@
                   visibility into your productivity and build better work habits
                   over time.
                 </h2>
-                <div class="flex flex-row gap-4">
+                <div class="flex flex-col lg:flex-row gap-4">
                   <Button
                     @click="openRegistration()"
                     size="lg"

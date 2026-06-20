@@ -11,7 +11,7 @@
       </p>
     </div>
 
-    <div class="flex flex-row gap-4 items-center">
+    <div class="flex flex-col lg:flex-row gap-4 items-center">
       <LandingStep
         :number="1"
         title="Add tasks"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="special-banner rounded-md bg-gradient-to-r from-blue-500 via-blue-600 to-blue-400 px-40 py-4 flex flex-row items-center justify-between"
+    class="special-banner rounded-md bg-gradient-to-r from-blue-500 via-blue-600 to-blue-400 px-40 py-4 flex flex-col lg:flex-row items-center justify-between"
   >
     <div class="special-banner__content">
       <p class="text-2xl font-semibold">Ready to take control of your time ?</p>
