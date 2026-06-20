@@ -4,7 +4,7 @@ import AuthInfo from "~/components/auth/AuthInfo.vue";
 
 <template>
   <div class="w-full h-screen">
-    <div class="grid grid-cols-2">
+    <div class="grid lg:grid-cols-2">
       <div>
         <auth-info />
       </div>
