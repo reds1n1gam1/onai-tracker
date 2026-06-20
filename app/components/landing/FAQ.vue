@@ -5,8 +5,8 @@
         <IconHelpOctagonFilled />
       </LandingLabel>
 
-      <p class="text-5xl font-bold">Frequently asked questions</p>
-      <p class="text-xl">
+      <p class="text-2xl lg:text-5xl font-bold">Frequently asked questions</p>
+      <p class="text-lg lg:text-xl">
         Answers to the most common question from Priority Time Tracker users
       </p>
     </div>

@@ -13,7 +13,9 @@
     >
       <CarouselContent>
         <CarouselItem v-for="(item, index) in bannerData" :key="index">
-          <div :class="'py-36 slide slide--' + (index + 1)">
+          <div
+            :class="'px-8 py-20 lg:px-0 lg:py-36 slide slide--' + (index + 1)"
+          >
             <div class="container grid md:grid-cols-2 sm:grid-cols-1 mx-auto">
               <div class="flex flex-col gap-6 items-start">
                 <LandingLabel
@@ -24,13 +26,13 @@
                 </LandingLabel>
 
                 <div class="flex gap-2 flex-col">
-                  <h1 class="text-6xl font-bold">Track you time</h1>
-                  <h1 class="text-6xl font-bold">
+                  <h1 class="text-3xl lg:text-6xl font-bold">Track you time</h1>
+                  <h1 class="text-3xl lg:text-6xl font-bold">
                     {{ item.title }}
                     <span class="accent-text">{{ item.titleAccent }}</span>
                   </h1>
                 </div>
-                <h2 class="text-xl">
+                <h2 class="text-lg lg:text-xl">
                   {{ item.text }}
                 </h2>
                 <div class="flex flex-col lg:flex-row gap-4">
@@ -48,7 +50,7 @@
                   >
                 </div>
 
-                <div class="flex flex-row gap-2">
+                <div class="flex flex-col lg:flex-row gap-2">
                   <LandingLabel palette="outline" text="Free 14-day trial">
                     <IconCircleCheckFilled />
                   </LandingLabel>

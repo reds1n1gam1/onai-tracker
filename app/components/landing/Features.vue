@@ -1,12 +1,16 @@
 <template>
   <div class="features">
-    <div class="features__header flex flex-col gap-6 items-center">
+    <div
+      class="features__header flex flex-col gap-6 items-center text-center lg:text-left"
+    >
       <LandingLabel text="Features" palette="default">
         <IconStarFilled />
       </LandingLabel>
 
-      <p class="text-5xl font-bold">Everything you need to stay focused</p>
-      <p class="text-xl">
+      <p class="text-2xl lg:text-5xl font-bold">
+        Everything you need to stay focused
+      </p>
+      <p class="text-lg lg:text-xl">
         Powerfull features designed to help you prioritize, track, and make
         consistent progress on the work that matters most
       </p>

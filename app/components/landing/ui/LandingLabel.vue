@@ -7,7 +7,7 @@
     <div class="label__icon">
       <slot></slot>
     </div>
-    <p class="label__text">{{ text }}</p>
+    <p class="label__text text-sm lg:text-lg">{{ text }}</p>
   </div>
 </template>
 
