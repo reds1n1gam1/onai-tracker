@@ -1,19 +1,12 @@
 <template>
   <div
-    class="login bg-white rounded-md py-12 px-10 shadow-lg flex flex-col justify-items-stretch gap-6"
+    class="login bg-white rounded-md py-12 px-10 shadow-lg flex flex-col justify-items-stretch gap-6 relative w-10/12 lg:w-auto"
   >
     <div class="login__header flex flex-col items-center">
-      <p class="text-3xl font-bold">Welcome back!</p>
-      <p class="text-lg text-gray-500">
+      <p class="text-xl lg:text-3xl font-bold">Welcome back!</p>
+      <p class="text-base lg:text-lg text-gray-500">
         Sign in to continue to Onai Time Tracker
       </p>
-    </div>
-
-    <hr />
-
-    <div class="login__sso grid gap-2">
-      <SocialButton :type="Socials.GOOGLE" />
-      <SocialButton :type="Socials.GITHUB" />
     </div>
 
     <hr />

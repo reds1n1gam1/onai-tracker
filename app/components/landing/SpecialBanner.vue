@@ -1,14 +1,16 @@
 <template>
   <div
-    class="special-banner rounded-md bg-gradient-to-r from-blue-500 via-blue-600 to-blue-400 px-40 py-4 flex flex-row items-center justify-between"
+    class="special-banner rounded-md bg-gradient-to-r from-blue-500 via-blue-600 to-blue-400 px-8 lg:px-40 py-4 flex flex-col lg:flex-row items-center justify-between"
   >
-    <div class="special-banner__content">
+    <div class="special-banner__content text-center">
       <p class="text-2xl font-semibold">Ready to take control of your time ?</p>
       <p class="text-lg">
         Start tracking, get smarter recommendations, and achieve more every day
       </p>
     </div>
-    <div class="special-banner__actions flex flex-col items-center gap-2">
+    <div
+      class="special-banner__actions flex flex-col items-center gap-4 lg:gap-2"
+    >
       <Button
         @click="openRegistration()"
         size="lg"

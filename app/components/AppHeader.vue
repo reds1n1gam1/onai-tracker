@@ -1,5 +1,7 @@
 <template>
   <div class="shadow-md bg-white flex flex-row justify-between p-6">
+    <SidebarTrigger />
+
     <p class="text-gray-700 text-lg font-medium">Dashboard</p>
 
     <div class="flex flex-row gap-2">
@@ -28,6 +30,7 @@ import Avatar from "./ui/avatar/Avatar.vue";
 import AvatarImage from "./ui/avatar/AvatarImage.vue";
 import AvatarFallback from "./ui/avatar/AvatarFallback.vue";
 import Button from "./ui/button/Button.vue";
+import SidebarTrigger from "./ui/sidebar/SidebarTrigger.vue";
 
 const {
   loggedIn,

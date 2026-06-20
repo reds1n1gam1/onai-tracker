@@ -15,13 +15,13 @@
       <Button size="lg" variant="secondary">View all tasks</Button>
     </div>
 
-    <div>
+    <div class="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none">
       <Table>
         <TableCaption>Detaild table for todays tasks list</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead> </TableHead>
-            <TableHead class="w-[100px]"> Task </TableHead>
+            <TableHead class="lg:w-[100px]"> Task </TableHead>
             <TableHead>Project</TableHead>
             <TableHead>Priority</TableHead>
             <TableHead>Status</TableHead>

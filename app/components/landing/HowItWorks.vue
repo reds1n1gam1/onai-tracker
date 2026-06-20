@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div class="flex flex-col gap-6 items-center">
+    <div class="flex flex-col gap-6 items-center text-center lg:text-left">
       <LandingLabel text="How it works" palette="default">
         <IconRocket />
       </LandingLabel>
 
-      <p class="text-5xl font-bold">A simple process for real progres</p>
-      <p class="text-xl">
+      <p class="text-2xl lg:text-5xl font-bold">
+        A simple process for real progres
+      </p>
+      <p class="text-lg lg:text-xl">
         Three easy steps to plan your work, track your time and achieve more
       </p>
     </div>
 
-    <div class="flex flex-row gap-4 items-center">
+    <div class="flex flex-col lg:flex-row gap-4 items-center">
       <LandingStep
         :number="1"
         title="Add tasks"

@@ -1,5 +1,5 @@
 <template>
-  <div class="py-36 banner">
+  <div class="px-8 py-20 lg:px-0 lg:py-36 banner">
     <div class="container grid md:grid-cols-2 sm:grid-cols-1 mx-auto">
       <div class="flex flex-col gap-6 items-start">
         <LandingLabel
@@ -10,16 +10,16 @@
         </LandingLabel>
 
         <div class="flex gap-2 flex-col">
-          <h1 class="text-5xl font-bold">Work smarter</h1>
-          <h1 class="text-5xl font-bold">
+          <h1 class="text-3xl lg:text-5xl font-bold">Work smarter</h1>
+          <h1 class="text-3xl lg:text-5xl font-bold">
             Focus on <span class="accent-text">what matters</span>
           </h1>
         </div>
-        <h2 class="text-xl w-8/12">
+        <h2 class="text-lg lg:text-xl w-8/12">
           Priority Time Tracker helps you organize tasks, track work sessions,
           and automatically understand what deserves your attention next
         </h2>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col lg:flex-row gap-4">
           <Button
             @click="openRegistration()"
             size="lg"

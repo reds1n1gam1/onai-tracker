@@ -1,5 +1,5 @@
 <template>
-  <div class="info w-full h-screen p-16">
+  <div class="info w-full h-screen p-6 lg:p-16 absolute lg:relative">
     <a href="/">
       <img class="footer__logotype w-80 mb-12" src="/logo-2.png" alt="" />
     </a>
@@ -7,10 +7,10 @@
     <div
       class="info__content flex flex-col gap-8 justify-items-start content-start"
     >
-      <p class="w-7/12 text-5xl font-bold">
+      <p class="w-10/12 lg:w-7/12 text-3xl lg:text-5xl font-bold">
         Focus on what matters. <span class="text-blue-500">Get more done.</span>
       </p>
-      <p class="w-8/12 text-lg text-gray-500">
+      <p class="w-10/12 lg:w-8/12 text-base lg:text-lg text-gray-500">
         Intelligent time tracking and priority management that helps you focus
         deeply and achieve your goals
       </p>

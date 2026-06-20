@@ -34,7 +34,7 @@
       </NavigationMenu>
     </nav>
 
-    <div class="header__auth grid gap-5 grid-cols-2">
+    <div class="header__auth hidden lg:grid gap-5 grid-cols-2">
       <Button
         @click="openLogin()"
         size="lg"

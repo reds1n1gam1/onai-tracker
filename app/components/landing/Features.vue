@@ -1,18 +1,22 @@
 <template>
   <div class="features">
-    <div class="features__header flex flex-col gap-6 items-center">
+    <div
+      class="features__header flex flex-col gap-6 items-center text-center lg:text-left"
+    >
       <LandingLabel text="Features" palette="default">
         <IconStarFilled />
       </LandingLabel>
 
-      <p class="text-5xl font-bold">Everything you need to stay focused</p>
-      <p class="text-xl">
+      <p class="text-2xl lg:text-5xl font-bold">
+        Everything you need to stay focused
+      </p>
+      <p class="text-lg lg:text-xl">
         Powerfull features designed to help you prioritize, track, and make
         consistent progress on the work that matters most
       </p>
     </div>
 
-    <div class="features__list grid grid-cols-4 gap-4 mt-12">
+    <div class="features__list grid lg:grid-cols-4 gap-4 mt-12">
       <LandingFeature
         title="Smart prioritization"
         text="Automatically score tasks based on priority, urgency, effort, and progress, so you always know what deserves your attention first."

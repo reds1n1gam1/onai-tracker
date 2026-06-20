@@ -40,7 +40,7 @@
       </Select>
     </div>
 
-    <div class="tasks-table">
+    <div class="tasks-table max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none">
       <Table>
         <TableCaption>All tasks list</TableCaption>
         <TableHeader>

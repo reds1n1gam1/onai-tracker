@@ -1,19 +1,12 @@
 <template>
   <div
-    class="registration bg-white rounded-md py-12 px-10 shadow-lg flex flex-col justify-items-stretch gap-6"
+    class="login bg-white rounded-md py-12 px-10 shadow-lg flex flex-col justify-items-stretch gap-6 relative w-10/12 lg:w-auto"
   >
     <div class="registration__header flex flex-col items-center">
-      <p class="text-3xl font-bold">Create your account!</p>
-      <p class="text-lg text-gray-500">
+      <p class="text-xl lg:text-3xl font-bold">Create your account!</p>
+      <p class="text-base lg:text-lg text-gray-500">
         Join thousands of focused professionals
       </p>
-    </div>
-
-    <hr />
-
-    <div class="registration__sso grid gap-2">
-      <SocialButton :type="Socials.GOOGLE" />
-      <SocialButton :type="Socials.GITHUB" />
     </div>
 
     <hr />
@@ -99,7 +92,7 @@
 
       <div class="flex flex-row gap-2 justify-items-start items-center">
         <Checkbox v-model="credentials.accept" id="accept" />
-        <Label for="accept" class="text-base font-normal"
+        <Label for="accept" class="text-base font-normal block"
           >I agree to
           <a href="/terms-of-service" class="text-blue-500 font-semibold"
             >Terms of Service</a
