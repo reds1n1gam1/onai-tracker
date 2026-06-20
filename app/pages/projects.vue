@@ -11,7 +11,7 @@
       </template>
     </WidgetsTitleBlock>
 
-    <div class="flex justify-start gap-4">
+    <div class="flex flex-col lg:flex-row justify-start gap-4">
       <StatItem color="blue">
         <template v-slot:icon><IconFolder /></template>
         <template v-slot:title>Total Projects</template>
@@ -47,7 +47,7 @@
       </Select>
     </div>
 
-    <Table>
+    <Table class="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none">
       <TableCaption>A list of your recent projects</TableCaption>
       <TableHeader>
         <TableRow>
